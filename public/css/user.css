@@ -1,0 +1,766 @@
+
+
+.user-home-container {
+	margin-top: 100px;
+}
+
+
+
+.user-info {
+	margin-bottom: 30px;
+	/*margin-left: -50px;*/
+	display: inline-block;
+	text-align: center;
+	width: 100%;
+}
+
+.user-props {
+	margin-top: 30px;
+	display: inline-block;
+	text-align: center;
+}
+
+.user-props > div {
+	float: left;
+}
+
+.user-props > div > img {
+	height: 100px;
+	width:100px;
+}
+
+.user-props > .user-status {
+	/*margin-top: 10px;*/
+	margin-left: 20px;
+}
+
+.user-props > .user-status > div > .user-name {
+	
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.user-props > .user-status > div > .user-sex {
+	display: inline-block;
+	margin-left: 10px;
+}
+
+.user-props > .user-status > div > .user-sex > img {
+	height:16px;
+	width:16px;
+	margin-top:-4px;
+}
+
+.user-props > .user-status > div > span > .follow-up-me,
+.user-props > .user-status > div > span > .follow-up-ed,
+.user-props > .user-status > div > span > .follow-up {
+	margin-top:10px;
+	height:30px;
+	line-height:30px;
+	width: 100px;
+	display:inline-block;
+	text-align: center;
+	border-radius: 30px;
+	
+}
+
+.user-props > .user-status > div > span > .follow-up {
+	background-color: #42c02e;
+	color: white;
+	cursor: pointer;
+}
+
+.user-props > .user-status > div > span > .follow-up-ed {
+	border: 1px solid #42c02e;
+	color: #42c02e;
+	cursor: pointer;
+}
+
+.user-props > .user-status > div > span > .follow-up > img {
+	height:14px;
+	width:14px;
+	margin-top:-1px;
+}
+
+.user-props > .user-status > div > span > .follow-up-me {
+	border-radius: 5px;
+	border: 1px solid #42c02e;
+	color: #42c02e;
+	cursor: default;
+	
+}
+
+.user-props > .user-status > .user-identity {
+	font-size: 14px;
+	opacity: 0.7;
+	/*text-align: left;*/
+}
+
+/*.user-props > .user-status > .user-social {
+	margin-top:6px; 
+	opacity: 0.7;
+}
+
+.user-props > .user-status > .user-social > span {
+	margin-right: 10px;
+	cursor: pointer;
+}
+
+.user-props > .user-status > .user-social > .split {
+	border-right: 1px solid #DDD; 
+	cursor: default;
+	margin-right: 15px;
+}*/
+
+
+.user-active {
+	/*margin-left: -50px;*/
+}
+
+/*标签页头*/
+.user-active > .nav-tabs > li > a,
+.user-active > .nav-tabs > li > a:focus, 
+.user-active > .nav-tabs > li > a:hover,
+.user-active > .nav-tabs > li.active > a, 
+.user-active > .nav-tabs > li.active > a:focus, 
+.user-active > .nav-tabs > li.active > a:hover {
+	border: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+	background-color: transparent;
+	width: 100px;
+	text-align: center;
+	font-size: 16px;
+	font-weight: bold;
+}
+.user-active > .nav-tabs > li > a,
+.user-active > .nav-tabs > li > a:focus, 
+.user-active > .nav-tabs > li > a:hover {
+	color: #555;
+}
+
+.user-active > .nav-tabs > li.active > a, 
+.user-active > .nav-tabs > li.active > a:focus, 
+.user-active > .nav-tabs > li.active > a:hover {
+	color: #008489;
+	border-bottom: 2px solid #008489 !important ;
+}
+
+.user-active > .tab-content {
+	margin-top: 20px;
+}
+
+.user-active > .tab-content > .tab-pane > .article {
+	border-bottom:1px solid #eee; 
+	margin-top: 20px;
+}
+
+.user-active > .tab-content > .tab-pane > .article > table > tbody > tr > td {
+	vertical-align: middle;
+}
+
+.user-active > .tab-content > .tab-pane > .article > table > tbody > tr > td:nth-child(1) {
+	padding-right: 10px;
+}
+
+.user-active > .tab-content > .tab-pane > .article > table > tbody > tr > td:nth-child(2) > img {
+	width:150px;
+	height: 112px;
+}
+
+.user-active > .tab-content > .tab-pane > .article > table > tbody > tr > td > .title {
+	font-size: 18px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.user-active > .tab-content > .tab-pane > .article > table > tbody > tr > td > .date {
+	margin-top:10px;
+	font-size: 14px;
+	color: #888;
+}
+
+.user-active > .tab-content > .tab-pane > .article > table > tbody > tr > td > .date > span > span {
+	margin-left:10px;
+	cursor: pointer;
+	color: #337ab7;
+}
+
+.user-active > .tab-content > .tab-pane > .article > table > tbody > tr > td > .summary {
+	 margin-top: 10px;
+	 font-size: 16px;
+}
+
+.user-active > .tab-content > .tab-pane > .article > table > tbody > tr > td > .statistics {
+	margin-top: 10px;
+	opacity: 0.6;
+	margin-bottom: 20px;
+}
+
+.user-active > .tab-content > .tab-pane > .article > table > tbody > tr > td > .statistics > span {
+	margin-right: 10px;
+	cursor: pointer;
+}
+
+
+.user-active > .tab-content > .tab-pane > .list-user-props {
+	margin-top: 30px;
+	padding-bottom: 30px;
+	border-bottom: 1px solid #eee;
+}
+
+.user-active > .tab-content > .tab-pane > .list-user-props > div {
+	float: left;
+}
+
+.user-active > .tab-content > .tab-pane > .list-user-props > table > tbody > tr > td {
+	vertical-align:top;
+}
+
+.user-active > .tab-content > .tab-pane > .list-user-props > table > tbody > tr > td > img {
+	height: 48px;
+	width:48px;
+	cursor: pointer;
+}
+
+.user-active > .tab-content > .tab-pane > .list-user-props > table > tbody > tr > .user-status {
+	padding-left: 20px;
+	font-size: 14px;
+	width: 100%;
+}
+
+.user-active > .tab-content > .tab-pane > .list-user-props > table > tbody > tr > .user-status > div > .user-name {
+	cursor: pointer;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.user-active > .tab-content > .tab-pane > .list-user-props > table > tbody > tr > .user-status > div > .user-sex {
+	display: inline-block;
+	margin-left: 10px;
+}
+
+.user-active > .tab-content > .tab-pane > .list-user-props > table > tbody > tr > .user-status > div > .user-sex > img {
+	height:14px;
+	width:14px;
+	margin-top:-4px;
+}
+
+.user-active > .tab-content > .tab-pane > .list-user-props > table > tbody > tr > .user-status > div > .follow-up-ed ,
+.user-active > .tab-content > .tab-pane > .list-user-props > table > tbody > tr > .user-status > div > .follow-up-me,
+.user-active > .tab-content > .tab-pane > .list-user-props > table > tbody > tr > .user-status > div > .follow-up {
+	margin-left:30px;
+	height:30px;
+	line-height:30px;
+	width: 100px;
+	display:inline-block;
+	text-align: center;
+	border-radius: 30px;
+	float: right;
+}
+
+.user-active > .tab-content > .tab-pane > .list-user-props > table > tbody > tr > .user-status > div > .follow-up {
+	background-color: #42c02e;
+	color: white;
+	cursor: pointer;
+}
+
+.user-active > .tab-content > .tab-pane > .list-user-props > table > tbody > tr > .user-status > div > .follow-up > img {
+	height:14px;
+	width:14px;
+	margin-top:-1px;
+}
+
+.user-active > .tab-content > .tab-pane > .list-user-props > table > tbody > tr > .user-status > div > .follow-up-me {
+	border-radius: 5px;
+	border: 1px solid #42c02e;
+	color: #42c02e;
+	cursor: default;
+}
+
+.user-active > .tab-content > .tab-pane > .list-user-props > table > tbody > tr > .user-status > div > .follow-up-ed {
+	border: 1px solid #42c02e;
+	color: #42c02e;
+	cursor: pointer;
+}
+
+.user-active > .tab-content > .tab-pane > .list-user-props > table > tbody > tr > .user-status > .user-identity {
+	font-size: 14px;
+	opacity: 0.7;
+}
+
+.user-active > .tab-content > .tab-pane > .list-user-props > table > tbody > tr > .user-status > .user-social {
+	margin-top:6px; 
+}
+
+.user-active > .tab-content > .tab-pane > .list-user-props > table > tbody > tr > .user-status > .user-social > span {
+	margin-right: 10px;
+}
+
+.user-active > .tab-content > .tab-pane > .list-user-props > table > tbody > tr > .user-status > .user-social > .split {
+	border-right: 1px solid #DDD; 
+	cursor: default;
+	margin-right: 15px;
+}
+
+.user-active > .tab-content > .tab-pane > .list-user-props > table > tbody > tr > .user-status > .user-intro {
+	margin-top:6px; 
+}
+
+.user-active > .tab-content > .tab-pane > .list-user-props > table > tbody > tr > .user-status > .user-intro > table > tbody > tr > td {
+	vertical-align:top;
+}
+
+.user-active > .tab-content > .tab-pane > .list-user-props > table > tbody > tr > .user-status > .user-intro > table > tbody > tr > td:nth-child(1) {
+	width: 50px;
+	opacity: 0.7;
+}
+
+.user-active > .tab-content > .tab-pane > .list-user-props > table > tbody > tr > .user-status > .user-intro > table > tbody > tr > td:nth-child(2) {
+}
+
+
+.user-detail {
+	margin-top: 30px;
+	display: inline-block;
+}
+
+.user-detail > div {
+	font-size: 14px;
+	margin-bottom: 15px;
+}
+
+.user-detail > div > span {
+	opacity: 0.5;
+}
+
+.user-detail > div > div {
+	margin-top: 8px;
+}
+
+
+
+
+/*88888888888888888888888888888888888888888888888888888888888888888888888888888*/
+.user-active > .active-category {
+	font-size: 16px;
+	font-weight: bold;
+	cursor: pointer;
+	opacity: 0.7;
+}
+
+
+
+
+.article-operate {
+	font-size: 19px;
+}
+
+.article-operate > div {
+	height:50px;
+	line-height: 50px; 
+	width:150px;
+	border:1px solid #bbb;
+	color: #999;
+	margin-right:20px;
+	text-align: center;
+	vertical-align: middle; 
+	display: inline-block; 
+	border-radius: 50px; 
+	cursor: pointer;
+}
+
+.article-comment {
+	margin-top: 80px;
+}
+
+.article-comment > .comment-login {
+	font-size: 16px;
+	background-color: #EEE; 
+	border:1px solid #DDD;
+	height: 135px;
+	line-height: 135px;
+	text-align: center; 
+	vertical-align: middle;  
+}
+
+.article-comment > .comment-login > .login-btn {
+	height:35px;
+	line-height: 35px; 
+	width:100px;
+	text-align: center;
+	vertical-align: middle; 
+	display: inline-block; 
+	color: white; 
+	background-color: #FF5A5F; 
+	border:0px solid #bbb; 
+	border-radius: 50px;
+	margin-right: 10px;
+	cursor: pointer;
+}
+
+.comment-reply,
+.article-comment > .comment-post {
+	font-size: 16px;
+	display: inline-block;
+	width:100%;
+	/*border:1px solid red;*/
+}
+
+.comment-reply {
+	width:95%;
+}
+
+.comment-reply > form > div > textarea,
+.article-comment > .comment-post > form > div > textarea {
+	background-color: #f7f7f7; 
+	border:1px solid #DDD;
+	outline:none;
+	resize:none;
+	
+}
+
+.comment-reply > .reply-btn,
+.article-comment > .comment-post > .post-btn {
+	height:30px;
+	line-height: 30px; 
+	width:80px;
+	text-align: center;
+	vertical-align: middle; 
+	display: inline-block; 
+	color: white; 
+	background-color: #FF5A5F; 
+	border:0px solid #bbb; 
+	border-radius: 50px;
+	margin-right: 10px;
+	cursor: pointer;
+}
+
+.comment-reply > .disabled-reply-btn,
+.article-comment > .comment-post > .disabled-post-btn {
+	opacity: 0.6;
+	cursor: default;
+}
+
+.article-comment-count {
+	font-size: 16px;
+	margin-top: 30px;
+	height:50px; 
+	border-bottom: 1px solid #ccc;
+}
+
+.article-comment-count > span {
+	font-size: 18px; 
+	font-weight: bold;
+}
+
+.article-comment-detail {
+	margin-top: 30px;
+}
+
+.article-comment-detail > .user-info {
+	display: inline-block;
+}
+
+.article-comment-detail > .user-info > div {
+	float: left;
+}
+
+.article-comment-detail > .user-info > div > img {
+	margin-top: 1px;
+	height: 36px;
+	width:36px;
+	cursor: pointer;
+}
+
+.article-comment-detail > .user-info > .comment-props {
+	margin-left: 10px;
+}
+.article-comment-detail > .user-info > .comment-props > span {
+	font-size: 16px;
+	cursor: pointer;
+}
+
+.article-comment-detail > .user-info > .comment-props > div {
+	/*margin-top:1px;*/
+	font-size: 12px; 
+	opacity: 0.7;
+}
+
+.article-comment-detail > .comment-content {
+	margin-top: 20px;
+}
+
+.article-comment-detail > .comment-content-response {
+	margin-top: 20px;
+	border:0px solid gray;
+	height:22px;
+	line-height:22px;
+	vertical-align: middle;
+	display: inline-block;
+	opacity: 0.6;
+}
+
+.article-comment-detail > .comment-content-response > span {
+	cursor: pointer;
+}
+
+.article-comment-detail > .comment-content-response > .selected {
+	color: #FF5A5F;
+}
+
+
+.article-comment-detail > .comment-content-response-content {
+	margin-top: 20px; 
+	border-left: 2px solid #ccc; 
+}
+
+.article-comment-detail > .comment-content-response-content > div {
+	margin-left: 20px;
+	margin-top:10px;
+	/*border-bottom: 1px solid #EEE;*/
+}
+
+.article-comment-detail > .comment-content-response-content > div > div > .res-post {
+	color:#3194d0;
+	cursor: pointer;
+}
+
+.article-comment-detail > .comment-content-response-content > div > .res-props {
+	margin-top:5px;
+	font-size: 14px; 
+	opacity: 0.7;
+	margin-bottom: 10px;
+}
+
+/*.article-comment-detail > .comment-content-response-content > div > .res-props > .res-props-reply {
+	cursor: pointer;
+}*/
+
+.article-comment-detail > .comment-content-response-content > .res-more {
+	border-bottom: 0px solid #EEE;
+	margin-left: 20px;
+	margin-top:15px;
+	font-size: 14px; 
+	opacity: 0.7;
+	margin-bottom: 10px;
+}
+
+.article-comment-detail > .comment-content-response-content > .res-more > span,
+.article-comment-detail > .comment-content-response-content > .res-more > a {
+	cursor: pointer;
+}
+
+
+/*箭头左拉框*/
+.leftballoon {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    position: absolute;
+    margin:0px;
+    height:200px;
+    line-height:200px;
+    width:200px;
+    text-align: center;
+    background-color: white;
+    z-index: 8;
+}
+.leftballoon:before,
+.leftballoon:after{
+    content: "";
+    display: block;
+    position: absolute;
+    border: 10px solid transparent;
+    top:110px;
+
+}
+
+.leftballoon:before{
+    border-left-color: white;
+    left:198px;
+    z-index: 8;
+}
+.leftballoon:after{
+    border-left-color: #ccc;
+    left: 199px;  
+}
+/*end 箭头左拉框*/
+
+.chat {
+	position: fixed;
+	width: 600px;
+	height: 400px;
+	bottom:10px;
+	right:10px;
+	background-color: rgba(255,255,255,1);
+	box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 8px 5px;
+	
+}
+
+.chat > .header {
+	padding-top: 10px;
+	padding-bottom: 5px;
+	text-align: center;
+	border-bottom: 1px solid #eee;
+	background-color: rgba(238,238,238,0.4);
+}
+
+.chat > .header > .close {
+	font-weight: normal;
+	font-size: 12px;
+	margin-right: 20px;
+	margin-top: 5px;
+	cursor: pointer;
+}
+
+.chat > .header > .title {
+	font-weight: bold;
+}
+
+.chat > .header > div {
+	border-bottom: 1px solid #eee; 
+	margin-top: 10px;
+}
+
+.chat > .send {
+	position: absolute; 
+	bottom: 5px; 
+	padding-left: 5px;
+	padding-right: 5px; 
+}
+
+.chat > .send > div > input {
+	height: 30px;
+	width: 500px;
+}
+
+.chat > .send > div > label > .button {
+	width: 80px;
+	height: 30px;
+	line-height: 30px;
+	font-size: 14px;
+	border: 1px solid #02ba02b3;
+	background-color: #02ba02b3;
+	border-radius: 15px;
+	text-align: center;
+	color: white;
+	cursor: pointer;
+}
+
+.chat > .message {
+	overflow: auto;
+	height: 320px; 
+	width: 100%; 
+}
+
+.chat > .message > .more {
+	/*visibility: hidden; */
+	width: 100%;
+	text-align: center;
+	margin-top: 10px;
+}
+
+.chat > .message > .more > span {
+	color:rgb(235, 115, 80); 
+	font-size: 16px;
+	cursor: pointer; 
+}
+
+.chat > .message > .content {
+	margin-top: 10px;
+}
+
+.chat > .message > .content > div {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.chat > .message > .content > div > .chat-user,
+.chat > .message > .content > div > .chat-content {
+	display: inline-block;
+	vertical-align: top;
+}
+
+.chat > .message > .content > div > .chat-content-left {
+	margin-left: 15px;
+} 
+
+.chat > .message > .content > div > .chat-content-right {
+	margin-right: 19px;
+} 
+
+.chat > .message > .content > div > div > img {
+	height:50px;
+	width:50px;
+}
+
+.chat > .message > .content > div > .chat-content > .chat-date {
+	color: #ccc;
+}
+
+/*箭头左拉框*/
+.leftballoon-msg {
+	padding: 10px;
+    border: 1px solid #02ba02b3;
+    border-radius: 4px;
+    position: relative;
+    margin-top:3px;
+    max-width:420px;
+    vertical-align: middle;
+    word-break:break-all;
+    background-color: rgba(159, 255, 159, 1);
+
+}
+.leftballoon-msg:before,
+.leftballoon-msg:after{
+	content: "";
+    display: block;
+    position: absolute;
+    border: 7px solid transparent;
+    top:12px;
+}
+
+.leftballoon-msg:before{
+    border-left-color: #02ba02b3;
+    right:-15px;
+}
+.leftballoon-msg:after{
+    border-left-color: rgba(159, 255, 159, 1);
+    right:-14px;
+
+
+}
+/*end 箭头左拉框*/
+
+/*箭头右拉框*/
+.rightballoon-msg {
+	padding: 10px;
+    border: 1px solid #bad0e9;
+    border-radius: 4px;
+    position: relative;
+    margin-top:3px;
+    max-width:420px;
+    vertical-align: middle;
+    word-break:break-all;
+    background-color: #e7f1fc;
+}
+.rightballoon-msg:before,
+.rightballoon-msg:after{
+    content: "";
+    display: block;
+    position: absolute;
+    border: 7px solid transparent;
+    top:12px;
+
+}
+
+.rightballoon-msg:before{
+    border-right-color: #bad0e9;
+    left:-15px;
+}
+.rightballoon-msg:after{
+    border-right-color: #e7f1fc;
+    left: -14px;
+}
+/*end 箭头右拉框*/
+

@@ -1,0 +1,350 @@
+
+	<div class="container-fluid user-home-container "   >
+		<div class="row-fluid clearfix ng-cloak" ng-cloak ng-controller="user" ng-init='initData()'>
+			<div class="col-md-2 column" >
+			</div>
+			<div class="col-md-6 column"  >
+
+				<!-- 用户信息 -->
+				<div class="row-fluid clearfix user-info" >
+					
+					
+					<div class="user-props" >
+						<div>
+							<img class="img-circle" ng-src='{{"/resource/"+user.img+"?frame=middle&sharp=square&scale=0"}}' >
+						</div>
+						<div class="user-status">
+							<div>
+								<span class="user-name">{{user.name}}</span>
+								<span class="user-sex" style='position: absolute; margin-top:8px;'>
+									<img ng-if="user.sex==0" src="/img/male_16px_1182664_easyicon.net.png">
+									<img ng-if="user.sex==1" src="/img/female_16px_1182628_easyicon.net.png">
+								</span>
+							</div>
+							<div class="user-identity">{{user.identity}}</div>
+							<div >
+								<!--先判断登录状态-->
+								<span ng-if="logged_in==0">
+									<span class="follow-up pull-left"  href="#modal-container-login" data-toggle="modal" >
+										<img src="/img/arrows_plus_16px_1182530_easyicon.net_white.png" >
+										关注
+									</span>
+								</span>
+								<!--登录状态和关注状态同时判断-->
+								<span ng-if="logged_in==1">
+									<span class="follow-up pull-left" ng-if="user.additional.my_follow_up==0" ng-click="setFollowup(user)" >
+										<img src="/img/arrows_plus_16px_1182530_easyicon.net_white.png" >
+										关注
+									</span>
+									<span class="follow-up-ed pull-left" ng-if="user.additional.my_follow_up==1" ng-click="setFollowup(user)">
+										已关注
+									</span>
+									<span class="follow-up-ed pull-left" ng-if="user.additional.my_follow_up==2" ng-click="setFollowup(user)">
+										相互关注
+									</span>
+									<span class="follow-up-me pull-left" ng-if="user.additional.my_follow_up==-1" >
+										我的主页
+									</span>
+
+									<span class="follow-up-ed" style='margin-left: 10px;' ng-if="user.additional.my_follow_up!=-1" ng-click='chat()'>私信</span>
+								</span>
+								
+							</div>
+							
+							
+						</div>
+					</div>
+				
+				</div>
+
+
+
+				<!-- 类别 -->
+				<div class="row-fluid clearfix user-active" >
+					
+					<ul class="nav nav-tabs" >
+						
+						<!-- <li >
+							<a href="#activity_list" data-toggle="tab" ng-click="getActivities()">
+								<span>动态</span>
+							</a>
+						</li> -->
+						<li class="active" >
+							<a href="#article_list"  data-toggle="tab" ng-click="getArticles()">
+								<span>文章 {{user.articles}}</span>
+							</a>
+						</li>
+						<li >
+							<a href="#followup_list" data-toggle="tab" ng-click="getFollowups()">
+								<span>关注 {{user.followups}}</span>
+							</a>
+						</li>
+						<li >
+							<a href="#fans_list" data-toggle="tab" ng-click="getFans()">
+								<span>粉丝 {{user.fans}}</span>
+							</a>
+						</li>
+						
+					</ul>
+					
+					<div class="tab-content" >
+
+						<div class="tab-pane fade in active" id="article_list">
+							<div class="row-fluid article"  ng-repeat="article in user_articles">
+								<table><tr><td>
+									<div class="title" ng-click='gotoPage("/article/"+article._id)'>
+										{{article.title}}
+
+									</div>
+									<div class="date" >
+										<span>{{article.created_date}}</span>
+										<span ng-if="user.additional.my_follow_up==-1 && logged_in==1 && article.publish==0" >
+											<span ng-click="deleteArticle(article._id)">删除</span>
+											<span ng-click="publishArticle(article._id)">发布</span>
+											<span ng-click='gotoPage("/article/"+article._id+"/modify")'>编辑</span>
+										</span>
+										<span ng-if="user.additional.my_follow_up==-1 && logged_in==1 && article.publish==1" >
+											<span ng-click="deleteArticle(article._id)">删除</span>
+											<span ng-click="publishArticle(article._id)">撤销</span>
+											
+										</span>
+									</div>
+									<div class="summary">
+										<span ng-bind-html="article.summary | to_trusted"></span>
+										<span>...</span>
+									</div>
+									<div class="row-fluid statistics" ng-click='gotoPage("/article/"+article._id)'>
+										<span class="glyphicon glyphicon-eye-open" ><span style="margin-left: 2px;">{{article.read}}</span></span>
+										<span class="glyphicon glyphicon-comment"><span style="margin-left: 2px;">{{article.comment}}</span></span>
+										<span class="glyphicon glyphicon-heart"><span style="margin-left: 2px;">{{article.favorite}}</span></span>
+										
+									</div> 
+								</td>
+						
+								<td>
+									<img ng-if="article.img" src='{{article.img}}'>
+								</td></tr></table>
+							</div>
+						</div>
+
+						<!-- <div class="tab-pane fade in" id="activity_list">
+						activity_list
+						</div> -->
+						
+						<div class="tab-pane fade in" id="followup_list">
+							<div class="row-fluid list-user-props" ng-repeat="user in user_followups">
+								<table><tr>
+								<td>
+									<img class="img-circle" ng-click='gotoPage("/user/"+user._id)' src='{{"/resource/"+user.img+"?frame=micro&sharp=square&scale=1"}}'>
+								</td>
+								<td class="user-status">
+
+									<div>
+										<span class="user-name" ng-click='gotoPage("/user/"+user._id)'>{{user.name}}</span>
+										<span class="user-sex">
+											<img ng-if="user.sex==0" src="/img/male_16px_1182664_easyicon.net.png">
+											<img ng-if="user.sex==1" src="/img/female_16px_1182628_easyicon.net.png">
+										</span>
+										<!--先判断登录状态-->
+										<span class="follow-up" ng-if="logged_in==0" href="#modal-container-login" data-toggle="modal" >
+											<img src="/img/arrows_plus_16px_1182530_easyicon.net_white.png" >
+											关注
+										</span>
+										<!--登录状态和关注状态同时判断-->
+										<span class="follow-up" ng-if="user.additional.my_follow_up==0 && logged_in==1" ng-click="setFollowup(user)" >
+											<img src="/img/arrows_plus_16px_1182530_easyicon.net_white.png" >
+											关注
+										</span>
+										<span class="follow-up-ed" ng-if="user.additional.my_follow_up==1 && logged_in==1" ng-click="setFollowup(user)">
+											已关注
+										</span>
+										<span class="follow-up-ed" ng-if="user.additional.my_follow_up==2 && logged_in==1" ng-click="setFollowup(user)" >
+											相互关注
+										</span>
+										<span class="follow-up-me" ng-if="user.additional.my_follow_up==-1 && logged_in==1">
+											我被关注
+										</span>
+										
+									</div>
+
+									<div class="user-identity">{{user.identity}}</div>
+									<div class="user-social">
+										<span>关注 <span>{{user.followup}}</span> </span>
+										<span class="split"></span>
+										<span>粉丝 <span>{{user.fans}}</span> </span>
+										<span class="split"></span>
+										<span>文章 <span>{{user.article}}</span> </span>
+										
+										
+									
+									</div>
+									<div class="user-intro">
+										<table>
+											<tr>
+												<td>位置</td><td>{{user.address}}</td>
+											</tr>
+											<tr>
+												<td>简介</td><td>{{user.self_introduction}}</td>
+											</tr>
+										</table>
+									</div>
+								</td>
+								</tr></table>
+							</div>
+						</div>
+
+						<div class="tab-pane fade in" id="fans_list">
+							<div class="row-fluid list-user-props ng-cloak" ng-cloak ng-repeat="user in user_fans">
+								<table><tr>
+								<td>
+									<img class="img-circle" ng-click='gotoPage("/user/"+user._id)' src='{{"/resource/"+user.img+"?frame=micro&sharp=square&scale=0"}}'>
+								</td>
+								<td class="user-status">
+
+									<div>
+										<span class="user-name" ng-click='gotoPage("/user/"+user._id)'>{{user.name}}</span>
+										<span class="user-sex">
+											<img ng-if="user.sex==0" src="/img/male_16px_1182664_easyicon.net.png">
+											<img ng-if="user.sex==1" src="/img/female_16px_1182628_easyicon.net.png">
+										</span>
+										<!--先判断登录状态-->
+										<span class="follow-up" ng-if="logged_in==0" href="#modal-container-login" data-toggle="modal" >
+											<img src="/img/arrows_plus_16px_1182530_easyicon.net_white.png" >
+											关注
+										</span>
+										<!--登录状态和关注状态同时判断-->
+										<span class="follow-up" ng-if="user.additional.my_follow_up==0 && logged_in==1" ng-click="setFollowup(user)" >
+											<img src="/img/arrows_plus_16px_1182530_easyicon.net_white.png" >
+											关注
+										</span>
+										<span class="follow-up-ed" ng-if="user.additional.my_follow_up==1 && logged_in==1" ng-click="setFollowup(user)" >
+											已关注
+										</span>
+										<span class="follow-up-ed" ng-if="user.additional.my_follow_up==2 && logged_in==1" ng-click="setFollowup(user)" >
+											相互关注
+										</span>
+										<span class="follow-up-me" ng-if="user.additional.my_follow_up==-1 && logged_in==1">
+											我被关注
+										</span>
+										
+									</div>
+									<div class="user-identity">{{user.identity}}</div>
+									<div class="user-social">
+										<span>关注 <span>{{user.followup}}</span> </span>
+										<span class="split"></span>
+										<span>粉丝 <span>{{user.fans}}</span> </span>
+										<span class="split"></span>
+										<span>文章 <span>{{user.article}}</span> </span>
+										
+										
+									
+									</div>
+									<div class="user-intro">
+										<table>
+											<tr>
+												<td>位置</td><td>{{user.address}}</td>
+											</tr>
+											<tr>
+												<td>简介</td><td>{{user.self_introduction}}</td>
+											</tr>
+										</table>
+									</div>
+								</td>
+								</tr></table>
+							</div>
+						</div>
+						
+					</div>
+
+				</div>
+			</div>
+			<div class="col-md-2 column hidden-sm hidden-xs" >
+				<div class="user-detail">
+					
+					<div ng-if="user.address">
+						<span>位置</span>
+						<div>{{user.address}}</div>
+					</div>
+					<div ng-if="user.birthday">
+						<span>生日</span>
+						<div>{{user.birthday}}</div>
+					</div>
+					<div ng-if="user.self_introduction">
+						<span>简介</span>
+						<div>{{user.self_introduction}}</div>
+					</div>
+					<div ng-if="user.college">
+						<span>毕业院校</span>
+						<div>{{user.college}}</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-2 column" >
+			</div>
+
+
+
+
+<div id='message-content' class="chat" style='visibility: hidden;' >
+	<div class="row-fluid header" >		
+		<span class='title'>与{{user.name}}的对话</span>
+		<span class='glyphicon-remove pull-right close' ng-click='closeChat()' ></span>
+	</div>
+
+	<div id='msg_list_view' class='message' >
+		<div id='more_msg' class="row-fluid more" style='visibility: hidden;'>
+			<span  ng-click='getMoreMessages(chatting_user.chat)'>查看更多消息</span>
+		</div>
+		
+		<div  class='content'>
+			<div id='chat_msg' class="row"  ng-repeat='item in chatting_list.slice().reverse()'>
+
+				<div class='chat-user' ng-if='item.user===user._id'>
+					<img class="img-circle"  ng-src='/resource/{{user.img}}?frame=micro&sharp=square&scale=1' >
+				</div>
+				<div class='chat-user pull-right' ng-if='item.user===my_id'>
+					<img class="img-circle"  ng-src='/resource/{{my_img}}?frame=micro&sharp=square&scale=1' >
+				</div>
+
+				<div class='chat-content ' ng-class='item.user===my_id?"chat-content-right pull-right":"chat-content-left"'>
+					<div ng-class='item.user===my_id?"leftballoon-msg":"rightballoon-msg"'  > {{item.msg}}</div>
+					<div class='chat-date' ng-class='item.user===my_id?"pull-right":""'>{{item.created_date}}</div>	
+				</div>
+				
+			</div>
+		</div>
+
+	</div>
+	
+	<form class="form-inline send" role="form" >
+		<div class="form-group">
+			<input class="form-control "  placeholder="" rows='1' ng-model='message' ng-keyup="handleKey($event)"  id="input_msg">
+			<label class="form-label"><div class='button' ng-click='sendMsg()'>发送</div></label>
+			
+		</div>
+		
+	</form>
+
+</div>
+
+
+
+		</div>
+
+</div>
+
+
+		<div class="float-bar">
+			<!--回到顶部-->
+			<div class="float-icon" id="backtotop"  style="visibility: hidden;">
+				<img  src="/img/arrow_16px_1167945_easyicon.net.png">
+				<div class="leftballoon-tips" style="visibility:hidden;">回到顶部</div>
+			</div>
+		</div>
+
+
+	<br><br><br>
+
+
+
+        

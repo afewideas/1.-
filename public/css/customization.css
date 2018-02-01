@@ -1,0 +1,525 @@
+
+
+
+
+/*modified*/
+
+/********修改class**************************************/
+
+/*将导航条背景去掉*/
+.navbar-default {
+  background-color: transparent; 
+  border-color: transparent;  
+}
+
+/*将选中下拉菜单背景去掉*/
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+  color: #555;
+  background-color: transparent; 
+}
+
+
+
+/********新建class**************************************/
+
+/*根据屏幕用不同大小的图片*/
+@media (min-width: 767px) {
+  .bg-header {
+    /*background-image:url(http://static01.fishtrip.cn/images/home_v3/home-banner-v18.jpg);*/
+    background-size: cover;
+  }
+
+
+}
+@media (max-width: 767px) {
+  .bg-header {
+    /*background-image:url(https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png);*/
+    background-size: cover;
+  }
+}
+
+/*去掉查询下拉区域中的表格线*/
+.dropdown-table > tbody > tr > td {
+  border-top: none;
+  font-size: 100%;
+  cursor: default;
+  display: table-cell;
+  vertical-align: middle;
+  /*border:1px solid green;*/
+}
+
+.dropdown-table > tbody > tr > td > skey {
+  cursor: pointer;
+  padding-left: 10px;
+  /*border:1px solid red;*/
+  width: 116px;   
+  height: 30px;   
+  display: table-cell;
+  vertical-align: middle;
+  text-indent:1em;
+}
+
+.dropdown-table > tbody > tr > td > skey:focus,
+.dropdown-table > tbody > tr > td > skey:hover {
+  background-color: #d9edf7;
+}
+
+/*查询自动完成列表*/
+.dropdown-table-list > tbody > tr:focus,
+.dropdown-table-list > tbody > tr:hover {
+  background-color: #d9edf7;
+  cursor: default;
+}
+.dropdown-table-list > tbody > tr > td {
+  border-top: none;
+}
+
+
+/*箭头下拉框*/
+.downballoon{
+    width: 100%;
+    height: 100%;
+    border: 1px solid #d5d5d5;
+    border-radius: 0px;
+    position: absolute;
+    top: 55px;
+    margin:0px;
+}
+.downballoon:before,
+.downballoon:after{
+    content: "";
+    display: block;
+    position: absolute;
+    border: 10px solid transparent;
+    left:60%;
+}
+
+.downballoon:before{
+    border-bottom-color: white;
+    top:-20px;
+    z-index: 9;
+}
+.downballoon:after{
+    border-bottom-color: #d5d5d5;
+    top: -21px;  
+}
+/*end 箭头下拉框*/
+
+/*配合导航区小屏幕的缩进*/
+.margin-fix {
+  
+}
+
+/*配合col-md-1/col-md-10/col-md-1布局的缩进*/
+.margin-fix-2 {
+  color:#484848;
+  padding-left: 12.5px;
+  padding-right: 12.5px;
+}
+
+
+/*单行横向滑动*/
+
+/*单行容器*/
+.slide-row-container{
+  margin-top: 20px;
+}
+
+/*数据区*/
+/*数据区容器*/
+.slide-row-container > .slide-row-swiper{
+  float: left;
+  width:100%;
+  overflow: hidden;
+  display: -moz-box; /*Firefox*/
+  display: -webkit-box; /*Safari,Opera,Chrome*/
+  display: box;
+}
+
+/*数据图片*/
+.slide-row-container > .slide-row-swiper > .slide-block {
+  margin-right: 20px;
+  height:100%;
+  width:245px;
+  cursor: pointer;
+  display:block!important;
+}
+
+/*数据说明*/
+.slide-row-container > .slide-row-swiper > .slide-block > img {
+  margin-top: -10px;
+  width:100%;
+}
+
+.slide-row-container > .slide-row-swiper > .slide-block > .slide-desc {
+  height:40px;
+  margin:2px;
+  overflow: hidden;
+  text-overflow: ellipsis; 
+}
+
+/*数据的拥有者头像*/
+.slide-row-container > .slide-row-swiper > .slide-block > .slide-props > .img-owner {
+  margin: 5px;
+  height: 24px;
+  width:24px;
+}
+
+/*数据的点赞/收藏/评论等的图标*/
+.slide-row-container > .slide-row-swiper > .slide-block > .slide-props > .img-icon {
+  margin:5px;
+  color:#484848;
+  margin-right: 1px;
+  vertical-align: middle;
+}
+
+/*数据的点赞/收藏/评论等的数量*/
+.slide-row-container > .slide-row-swiper > .slide-block > .slide-props > .img-text {
+  color:#484848;
+  font-size: 12px;
+}
+/*end 数据区*/
+
+/*数据左右滑动按钮*/
+.slide-row-container > .slide-row-button {
+  position: absolute;
+  float: left;
+  top: 160px;
+  color:#aaa;
+  cursor: pointer;
+
+  /*圆形背景，默认为透明，不可见*/
+  width: 40px;
+  height: 40px;
+  background: rgba(255,255,255,0); /*透明*/
+  -moz-border-radius: 50px;
+  -webkit-border-radius: 50px;
+  border-radius: 50px;
+  padding: 10px;
+  padding-left: 10px;
+  padding-top: 8px;
+  box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0) !important; /*透明*/
+}
+
+.slide-row-container > .slide-row-button:hover {
+  /*加深颜色*/
+  color: rgba(48,48,48,0.8);
+}
+
+.slide-row-container > .slide-row-button-left {
+  left: -5px;
+  visibility: hidden;
+}
+
+.slide-row-container > .slide-row-button-right {
+  right: 0px;
+}
+
+.slide-row-container > .slide-row-button-circle {
+  /*触发圆形背景*/
+  color: rgba(48,48,48,0.8); /*#484848;*/
+  background: rgba(255,255,255,0.9); /*white*/
+  box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.21) !important;
+}
+
+.slide-row-container > .slide-row-button-circle:hover {
+  /*加深阴影*/
+  box-shadow: 0px 0px 10px 2px rgba(0, 84, 89, 0.8) !important;
+}
+
+.slide-row-container > .slide-row-swiper > .slide-block >.slide-label {
+  position: relative; /*必须，否则label不滑动*/
+  height: 100%;
+}
+
+.slide-row-container > .slide-row-swiper > .slide-block >.slide-label > span {
+  position: absolute;
+  color: #333; 
+  background-color: #ffec50;
+  width: 80px;
+  height: 26px;
+  padding-top: 8px;
+  margin-left: 5px;
+  top: 10px;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: clip; 
+  border-radius: 4px; 
+}
+
+.slide-row-container > .slide-row-swiper > .slide-block >.slide-label > div {
+  position: absolute;
+  right: 5px;
+  top: 207px;
+}
+
+.slide-row-container > .slide-row-swiper > .slide-block >.slide-label > div > span {
+  color: #333; 
+  background-color: white;
+  font-weight: normal;
+  padding-top: 5px;
+  margin-left: 5px;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: clip; 
+  border-radius: 4px; 
+}
+
+
+/*手机竖屏*/
+@media (max-width: 660px) {
+
+  .slide-row-container > .slide-row-button {
+    visibility: hidden; /*在移动端去掉滑动按钮*/
+    width: 10px;
+  }
+
+  .slide-row-container > .slide-row-swiper{ 
+    overflow: auto;   /*在移动端允许手指滑动*/
+  }
+
+  .margin-fix {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  .margin-fix-2 {
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-left: -10px;
+    margin-right: -10px;
+  }
+
+}
+
+/*手机横屏*/
+@media (min-width: 661px) and (max-width: 767px) {
+
+  .slide-row-container > .slide-row-button {
+    visibility: hidden; /*在移动端去掉滑动按钮*/
+  }
+
+  .slide-row-container > .slide-row-swiper{ 
+    overflow: auto;   /*在移动端允许手指滑动*/
+  }
+
+  .margin-fix {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  .margin-fix-2 {
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-left: -10px;
+    margin-right: -10px;
+  }
+}
+
+/*PC缩放浏览器*/
+@media (min-width: 768px) and (max-width: 1227px) {
+  .slide-row-container > .slide-row-button {
+  }
+}
+
+/*PC全屏*/
+@media (min-width: 1228px) {
+  .slide-row-container > .slide-row-button {
+    font-size:150%;  
+  }
+}
+
+/*大屏幕可以重设图片大小*/
+/*
+@media (min-width: 1400px) {
+  .slide-row-swiper > div{
+    width:265px;
+  }
+  
+}
+*/
+
+/*end 数据左右滑动按钮*/
+
+/*end 单行横向滑动*/
+
+/*标签页头*/
+.nav-tabs > li > a,
+.nav-tabs > li > a:focus, 
+.nav-tabs > li > a:hover,
+.nav-tabs > li.active > a, 
+.nav-tabs > li.active > a:focus, 
+.nav-tabs > li.active > a:hover {
+  border: 0px;
+  padding-left: 0px;
+  background-color: transparent;
+}
+.nav-tabs > li > a,
+.nav-tabs > li > a:focus, 
+.nav-tabs > li > a:hover {
+  color: #555;
+}
+
+.nav-tabs > li.active > a, 
+.nav-tabs > li.active > a:focus, 
+.nav-tabs > li.active > a:hover {
+  color: #008489;
+  
+}
+.nav-tabs > li.active > a > span {
+  padding-bottom: 16px;
+  border-bottom: 2px solid #008489 !important ;
+}
+.nav-tabs {
+  padding-bottom: 20px;
+}
+
+
+/*多行图片布局*/
+.slide-column-container {
+  margin-top: 20px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.slide-column-container > .slide-block {
+  margin-bottom: 20px;
+  cursor: pointer;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.slide-column-container > .slide-block > .slide-img {
+   width:100%;
+   height:100%;
+}
+
+.slide-column-container > .slide-block > .slide-desc {
+  margin-top: 10px;
+  height:26px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.slide-column-container > .slide-block > .slide-props {
+  color:#484848;
+  height: 45px;
+  margin-top: 5px;
+  /*border: 1px solid red;*/
+}
+
+.slide-column-container > .slide-block > .slide-props > .slide-owner {
+  height: 40px;
+  width:40px;
+}
+
+.slide-column-container > .slide-block > .slide-props > .slide-icon {
+  margin:5px;
+  margin-right: 1px;
+  vertical-align: middle;
+}
+
+.slide-column-container > .slide-block > .slide-props > .slide-icon-text {
+  font-size: 12px;
+}
+
+.slide-column-container > .slide-block > .slide-labels {
+  position: absolute; 
+    height: 100%;
+    width: 100%;
+}
+
+.slide-column-container > .slide-block > .slide-labels > div {
+  position: absolute; 
+  bottom: 95px;
+  right: 26px;
+}
+
+.slide-column-container > .slide-block > .slide-labels > div > .slide-label-down {
+  margin-left: 5px;
+  padding-top: 4px;
+  color: #333; 
+  font-weight: normal;
+  max-width: 85%;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: clip; 
+  background-color: white;
+  border-radius: 4px; 
+  height: 26px;
+  
+}
+
+.slide-column-container > .slide-block > .slide-labels > .slide-label-up {
+  position: absolute; 
+  color: #333; 
+  text-align: left;
+  line-height: 30px;
+  font-size: 110%;
+  overflow: hidden;
+  text-overflow: clip; 
+  background-color: #ffec50;
+  border-radius: 0px;
+  border-bottom-right-radius: 15px; 
+  height:36px;
+  width: 120px;
+  top: 20px;
+  left: -10px;
+}
+
+.slide-column-more {
+  float: left;
+}
+
+.slide-column-more > a {
+  text-decoration:none;
+}
+
+.slide-column-more > a > div {
+   width: 156px; 
+   height:36px;
+   font-size: 15px; 
+   color: white; 
+   background-color: #008489; 
+   border-radius: 4px;
+   text-align: center;
+   padding-top: 7px;
+}
+
+
+@media (max-width: 767px) {
+
+  /*变为单行滑动*/
+  .slide-column-container {
+    float: left;
+    width:100%;
+    overflow: auto;
+    display: -moz-box; /*Firefox*/
+    display: -webkit-box; /*Safari,Opera,Chrome*/
+    display: box;
+
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+
+  }
+
+  .slide-column-container > .slide-block {
+    padding-left: 0px;
+    padding-right: 10px;
+    /*width:350px;*/
+  }
+
+  .slide-column-container > .slide-block > .slide-labels > .slide-label-up {
+    left: 1px;
+  }
+
+  
+
+}
+/*end 多行图片布局*/
+
+

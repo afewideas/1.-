@@ -1,0 +1,246 @@
+
+1. 	在layout.tpl中定义一个<script></script>区域，放置初始化变量。
+
+	例如：logged_in，标识是否登录。再angular controller中赋值：$scope.logged_in = logged_in;
+
+2. 	ng-init定义页面加载后的初始化方法。
+
+3.	采用滚动监听事件加载数据，避免初始化数据过多。
+
+	$(document).ready(function(){
+  	  window.onscroll = function(e){}
+  	}
+
+4.	在ng-if或者ng-repeat下面的元素使用ng-model，需要加上$parent已保持相同的scope，在controller中能使用。
+
+ 	通过动态添加的html内容中，使用ng-model,却不需要$parent。
+
+ 	在textarea上绑定ng-model却要使用$parent才能获取数据变化，不知道什么原因！！！！
+
+5.	popover对象跟随页面滚动，对于固定位置的flat-bar内容不合适。
+
+6.	css居中设置还比较糊涂。似乎：
+
+	图片居中：父元素设置 display: inline-block; 配合各种top设置
+
+	文字居中：父元素设置 text-align: center; vertical-align: middle; height等于line-height，配合各种top设置
+
+7.	<div class="row-fluid">中的内容除了div都默认横向排列，div可以利用pull-left,pull-right来排列。
+	通用方法：display: inline-block;
+
+8.	使用restful风格的url，方便使用$location.absUrl().split("/");获取参数。
+
+9.	jquery要在angular之前导入，以便angular中能使用jquery对象和函数。
+
+10.	jquery中使用angular对象：
+
+	var appElement = document.querySelector('[ng-controller=article]');
+  	var $scope = angular.element(appElement).scope(); 
+  	if($scope.my_favorite==0){}
+    $scope.$apply();
+
+11.	ng-repeat生成的动态ng-model，采用数组来实现。
+
+	在controller中定义：$scope.replycomment = [];
+
+	在页面上定义：ng-model="replycomment[$index]"
+
+	在ng-click函数中传入$index，controller中$scope.replycomment[index]可以取值/赋值。
+
+12.	angular动态添加html元素，需要$compile。
+
+	var reply_block = 'html内容';
+	var $reply_block = $compile(reply_block)($scope);
+	obj.append($reply_block); //添加到obj里面的末尾，更多动态添加/删除方法参考jquery相关内容。
+
+13.	angular获取当前对象,不能用this。
+
+	在页面上定义：ng-click="func($event)"
+
+	在controller中：
+		$scope.func = function($event){
+	    	var this_obj = $($event.target); //jquery对象
+
+14.	jquery绑定事件，采用$("body").on('click',"#sharearticle",function(e){})格式，方便绑定动态添加的元素。
+
+15.	通过调用angular的ng-init初始化，有时候比较慢（2次请求）。可以在article_Service.js中直接返回初始化数据。
+
+	调用API全局变量api_client：
+		api_client.get('article/'+req.params.id)
+		  .then(function(result) {
+		    response.do(req, res,"article",{'initData':JSON.stringify(result.body)}); //转换为字符串
+		  })
+		  .catch(function(err){
+		    console.log(err);
+		  });
+		初始化页面中的initData变量。
+
+	如果页面中有initData变量，则$scope.initData函数直接用该变量赋值；否则，调用webapi加载数据：
+		$scope.initData = function(){
+		    if (typeof(initData) == "undefined"){ //确保初始化initData变量，此处请求完全可以删除！！！！！
+		      var url = $location.absUrl().split("/");
+		      var id = url[url.length-1];
+		      //获取文章
+		      $http({
+		        method: 'GET',
+		        url: '/api/article/' + id
+		      }).then(function successCallback(response) {
+		          $scope.article = response.data;
+		          $scope.my_follow_up = $scope.article.my_follow_up;
+		          $scope.favorite = $scope.article.favorite; 
+		          $scope.comment = $scope.article.comment; 
+		          $scope.my_favorite = $scope.article.my_favorite;
+		      }, function errorCallback(response) {
+		          // 请求失败执行代码
+		      });
+		    }else{
+		      $scope.article = initData;
+		      $scope.my_follow_up = $scope.article.my_follow_up;
+		      $scope.favorite = $scope.article.favorite; 
+		      $scope.comment = $scope.article.comment; 
+		      $scope.my_favorite = $scope.article.my_favorite;
+		    }
+		  }
+
+	layout模板中定义initData变量：
+		{% if initData !== null %}
+	    var initData = {% autoescape false %} [[initData]] {% endautoescape %} ; //禁止json数据转义
+	    {% endif %}
+
+	response模块中定义默认值：
+		if(typeof(req_params.initData) == "undefined"){
+	   	 req_params.initData = null;
+	  	}
+
+	但是，但是......实际效果改善很有限，仍然能看到页面闪烁，增加ng-cloak属性和class，可以避免闪烁，同时插入css：
+		[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide {
+		  display:none !important;
+		}
+
+		ng\:form {
+		  display:block;
+		}
+
+		.ng-animate-start {
+		  clip:rect(0,auto,auto,0);
+		  -ms-zoom:1.0001;
+		}
+
+		.ng-animate-active {
+		  clip:rect(-1px,auto,auto,0);
+		  -ms-zoom:1;
+		}  
+
+15.	一个页面只能有一个angular app，通过$rootScope设置全局变量，例如：登录状态logged_in
+
+16.	angular全局loading标识。
+	设置http拦截器：
+		frameApp.factory('loadingInterceptor', ["$rootScope", function ($rootScope) {}
+	在controller中调用：
+		frameApp.controller('user', function($scope,$http,$location,$compile,$rootScope,loadingInterceptor) {}
+	即可在页面中通过$root.loading值来显示loading图像。
+
+17.	ng-repeat数据发生改变，调用$scope.$apply();来触发生效。
+
+18.	ueditor
+	安装node-ueditor，实现ueditor_Service.js，
+	下载新版ueditor。配置ueditor.config.js, ueditor.config.json, 删除index.html
+	引用文件：
+		<script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.config.js"></script>
+		<script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.all.js"> </script>
+		<script type="text/javascript" charset="utf-8" src="/ueditor/lang/zh-cn/zh-cn.js"> </script>
+		<link href="/ueditor/themes/default/css/ueditor.min.css" type="text/css" rel="stylesheet">
+	修改ueditor.all.js：
+		UE.plugin.register('autosave', function (){
+			......
+			'contentchange': function () {
+			//添加
+				if(!me.options.enableAutoSave){
+                    return;
+                }
+    在编辑器定义上设置字体大小，会影响工具条的高度，在同级的div上设置也会影响script！！！
+    去掉在线图片管理，修改dialogs/image/image.html文件，注释掉：
+    	<span class="tab" data-content-id="online"><var id="lang_tab_online"></var></span>
+        <span class="tab" data-content-id="search"><var id="lang_tab_search"></var></span>
+    contentchange事件不能监听到输入法输入的中文！！！
+    插入外链视频无效：
+    	https://my.oschina.net/u/379795/blog/787985
+    	只能在源码中修改。并且embed不能显示在编辑器，但保存后能播放。可以利用“插入iframe”功能插入视频！
+
+19.	redis查看：
+	keys *    
+	get id /smembers
+
+20.	socket.io发消息：
+	io.to(socket_id).emit();
+
+21.	mongodb修改IP地址后，不能开机启动，修改启动脚本：
+	start_server() {
+		rm /var/lib/mongodb/mongod.lock
+
+22.	angular监控数据变化，例如登录标记$rootScope.logged_in :
+	$scope.$watch('logged_in',  function(newValue, oldValue) {
+
+	    if (newValue === oldValue) { return; } 
+	     
+	    $scope.initData();
+
+	    if($("#comment").attr("loaded")=="true"){
+	      var page = 0;
+	      if(!isNaN(parseInt($("#comment_page").children(".active").text()))){
+	        page = parseInt($("#comment_page").children(".active").text()) - 1;
+	      }
+	      $scope.getComment(page);
+	    }
+	    
+
+	  });
+
+23.	bootstrap布局左右两列，左边菜单项，触发右边内容显示，所以右边的内容position:absolute来保持位置相同。但是这样会导致footer叠加在一起。
+	解决：
+	.user-settings-content > div {
+		padding-left: 30px;
+		/*visibility: hidden;*/  //占用DOM空间，下面有空白
+		display: none;  //不会占用DOM空间，没有留白
+		position: absolute; //隐藏的内容absolute，不会下推footer位置
+	}
+
+	.user-settings-content > div.selected {
+		/*visibility: visible;*/
+		display: block; 
+		position: relative; //显示时relative，保证footer跟随其下
+	}
+
+24.	DateTimePicker控件bug，显示位置向上偏移,修改bootstrap-datetimepicker.js：
+	place: function () {
+		......
+		top = top + 12 ; //containerOffset.top ;
+	    left = left ;//- containerOffset.left;
+
+25.	angular绑定radio button的值:
+	使用ng-value表示radio的value，在使用ng-model指向变量。
+
+26.	函数中使用Promise模式，配合async/await实现同步：
+	定义函数：
+	exports.get = function(filename, frame, sharp, scale) {
+		return new Promise(function(resolve,reject){
+			//将所有return的地方改成resolve(val)
+		});
+	};
+	调用函数：
+	async function(){
+		var rs = await get(...);
+	}
+
+27.	div水平排列，对齐：
+	display: inline-block;
+	vertical-align: middle;
+
+28.	获取id相同的全部元素：
+	$('[id=chat_msg]')     //所有此id的元素
+	$('div[id=chat_msg]')  //所有此id的div
+	$("input[id^='code']");//id属性以code开始的所有input标签
+	$("input[id$='code']");//id属性以code结束的所有input标签
+	$("input[id*='code']");//id属性包含code的所有input标签
+
+29.	bootstrap使用class='row-fluid',其中的div使用pull-right，所有的行都从右至左横排换行显示。改成class='row'即可分行显示了。

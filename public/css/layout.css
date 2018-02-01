@@ -1,0 +1,196 @@
+@charset "UTF-8";
+
+[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide {
+  display:none !important;
+}
+
+ng\:form {
+  display:block;
+}
+
+.ng-animate-start {
+  clip:rect(0,auto,auto,0);
+  -ms-zoom:1.0001;
+}
+
+.ng-animate-active {
+  clip:rect(-1px,auto,auto,0);
+  -ms-zoom:1;
+}  
+
+* {
+  font-family: apple-system, SF UI Text, Arial, PingFang SC, Hiragino Sans GB, Microsoft YaHei, WenQuanYi Micro Hei, sans-serif,Glyphicons Halflings;;
+}
+
+/*禁止Firefox出现虚线框*/
+a {
+  outline: none;
+}
+
+/*modified*/
+
+/********修改class**************************************/
+
+/*将导航条背景去掉*/
+.navbar-default {
+  background-color: transparent; 
+  border-color: transparent;  
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+/*将选中下拉菜单背景去掉*/
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+/*  color: #555;
+  background-color: transparent; */
+}
+
+
+
+/********新建class**************************************/
+
+/*根据屏幕用不同大小的图片*/
+@media (min-width: 767px) {
+  .bg-header {
+    /*background-image:url(http://static01.fishtrip.cn/images/home_v3/home-banner-v18.jpg);*/
+    background-size: cover;
+  }
+
+
+}
+@media (max-width: 767px) {
+  .bg-header {
+    /*background-image:url(https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png);*/
+    background-size: cover;
+  }
+}
+
+
+
+/*箭头下拉框*/
+.downballoon{
+    width: 100%;
+    height: 100%;
+    border: 1px solid #d5d5d5;
+    border-radius: 0px;
+    position: absolute;
+    top: 60px;
+    margin:0px;
+}
+.downballoon:before,
+.downballoon:after{
+    content: "";
+    display: block;
+    position: absolute;
+    border: 10px solid transparent;
+    left:60%;
+}
+
+.downballoon:before{
+    border-bottom-color: white;
+    top:-20px;
+    z-index: 9;
+}
+.downballoon:after{
+    border-bottom-color: #d5d5d5;
+    top: -21px;  
+}
+/*end 箭头下拉框*/
+
+/*箭头左拉框*/
+.leftballoon-tips {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #000;
+    border-radius: 4px;
+    position: absolute;
+    margin:0px;
+    height:38px;
+    line-height:38px;
+    width:90px;
+    text-align: center;
+    color: white;
+    background-color: #000;
+    z-index: 9;
+}
+.leftballoon-tips:before,
+.leftballoon-tips:after{
+    content: "";
+    display: block;
+    position: absolute;
+    border: 7px solid transparent;
+    top:11px;
+
+}
+
+.leftballoon-tips:before{
+    border-left-color: #000;
+    left:88px;
+    z-index: 9;
+}
+.leftballoon-tips:after{
+    border-left-color: #000;
+    left: 89px;  
+}
+/*end 箭头左拉框*/
+
+
+/*配合导航区小屏幕的缩进*/
+.margin-fix {
+  
+}
+
+/*配合col-md-1/col-md-10/col-md-1布局的缩进*/
+.margin-fix-2 {
+  color:#484848;
+  padding-left: 12.5px;
+  padding-right: 12.5px;
+}
+
+
+.layout-navbar {
+  /*box-shadow: 0px 0px 5px 2px #CBCBCB;*/
+  border-bottom: 1px solid #DBDBDB; 
+  background-color: white;  
+}
+
+.layout-btn {
+  color:white;
+  background-color:#FF5A5F;
+}
+
+.layout-modal > .modal-dialog > .modal-content {
+  padding-left:10px;
+  padding-right:10px;
+}
+
+.layout-modal > .modal-dialog > .modal-content > .modal-header {
+  border-bottom: 0px;
+}
+
+.layout-modal > .modal-dialog > .modal-content > .modal-header > .modal-title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.layout-footer {
+  border-top: 1px solid #DBDBDB;
+}
+
+.float-bar {
+  position: fixed;
+  bottom:80px;
+  right:50px;
+}
+
+.float-bar > .float-icon {
+  border:1px solid #CCC;
+  height:50px;
+  line-height:50px;
+  width:50px;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+}

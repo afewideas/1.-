@@ -1,0 +1,50 @@
+
+<div class="container-fluid " ng-controller="article_editor" ng-init='initData()' ng-cloak >
+    <div class="row-fluid clearfix article_editor" >
+        <div class="col-md-2 column article-list hidden-sm hidden-xs" >
+            <div class="row-fluid">
+                <img class="img-circle"  ng-click='gotoPage("/user/"+my_id)' ng-src='{{"/resource/"+my_img+"?frame=micro&sharp=square&scale=0"}}' >
+                <span class="mylist">我的文章</span>
+            </div>
+            <div class="row-fluid new" ng-click="newArticle()">
+                <span class="glyphicon glyphicon-plus" style="font-size: 14px;"></span> 新建文章
+            </div>
+            <div class="row-fluid">
+            
+                <a class="tips" id="{{item._id}}" ng-click='loadArticle(item._id)' ng-if="$index<10" ng-repeat="item in user_articles">
+                    <div id="al_title" ng-class="{active:article._id==item._id}">{{item.title}}</div>
+                    <span>{{item.title}}</span>
+                </a>
+                <a class="article-more" ng-if="user_articles.length>10" ng-click='gotoPage("/user/"+my_id)' >
+                    <div >查看更多文章</div>
+                </a>
+
+            </div>
+        </div>
+        <div class="col-md-10 column article-content"  >
+            <div class="row-fluid" >
+                <div class="input-group input-group-lg row-fluid" >
+
+                    <input class="pull-left " type="text" ng-model="article.title" ng-change="save()"  placeholder="输入标题...">
+                    <div class="pull-right" >
+                        <div class="save" ng-click="save()">保存</div>
+                        <div class="save-status">{{saved}} {{saved_time}}</div>
+                        <!-- <table style="border:1px solid #FFF; width: 100px;text-align: center;padding:4px;">
+                            <tr><td style="width: 100%;text-align: center;right:10px;"><div class="save">保存</div></td></tr>
+                            <tr><td class="save-status">{{saved}} {{saved_time}}</td></tr>
+                        </table> -->
+                        
+                        
+                    </div>
+                </div>
+                <div>
+                    <script id="editor" type="text/plain" style="height:465px;"></script>
+                </div>
+            </div>
+            
+        </div>
+        <!-- <div class="col-md-1 column" >
+        </div> -->
+    </div>
+</div>
+

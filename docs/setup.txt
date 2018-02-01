@@ -1,0 +1,182 @@
+
+1.Node.js安装：
+sudo apt-get install nodejs
+sudo apt-get install npm
+
+生成package.json：
+cd my_nodejs
+npm init
+
+安装库文件：
+npm install --save express
+npm install --save swig
+npm install --save cookie-parser
+npm install --save express-session
+npm install --save lodash
+npm install --save gm
+npm install --save request-json
+
+安装命令行工具：
+sudo npm install -g supervisor //安装到系统目录
+sudo npm install -g uglify-js //压缩js文件： uglifyjs ../view/public/js/old_home.js -m -o test-min.js
+sudo npm install -g clean-css-cli //压缩css文件： cleancss view/public/css/customization.css -o tools/test.min.css
+sudo npm install -g node-smushit //压缩图片： smushit -R ./images
+sudo npm install -g html-minifier //压缩html文件： html-minifier --remove-comments tools/home.html -o tools/home.min.html
+
+sudo npm install pm2 -g
+sudo pm2 update
+sudo chown -R tonyliu.tonyliu ~/.pm2
+
+安装测试工具：
+sudo npm install -g mocha
+npm  install  should
+
+安装ueditor：
+npm install ueditor --save
+https://github.com/netpi/ueditor下载demo
+
+node版本管理：
+sudo npm install -g n
+sudo n stable  升级到稳定版本
+
+
+
+----------------------------------------------------------
+
+2.安装sublime text：
+
+sudo add-apt-repository ppa:webupd8team/sublime-text-3
+sudo apt-get update
+sudo apt-get install sublime-text-installer
+
+下载Source Code Pro字体:https://github.com/adobe-fonts/source-code-pro/downloads
+unzip ~/下载/SourceCodePro_FontsOnly-1.013.zip
+cp SourceCodePro_FontsOnly-1.013/OTF/* ~/.fonts/
+fc-cache -f -v
+打开Sublime的Preferences，再打开Settings，添加:
+	"font_face": "Source Code Pro"
+
+//输入中文问题
+git clone https://github.com/lyfeyaj/sublime-text-imfix.git
+cd sublime-text-imfix
+./sublime-imfix
+
+注册码：
+http://www.jianshu.com/p/04e1b65dd2c0
+
+打开Sublime的Preferences，再打开Settings，添加:
+"update_check":false  //不要检查新版本，以免升级后license失效
+
+打开Settings，添加:
+"highlight_line": true,  //高亮当前行
+
+Tools -> Command Palette -> Package Control: Install Package:
+输入BracketHighlighter，安装，配置。
+https://www.cnblogs.com/willingtolove/p/4657320.html?utm_source=tuicool&utm_medium=referral
+
+
+---------------------------------------------------------
+3.安装redis
+sudo apt-get install redis-server
+sudo vi /etc/redis/redis.conf: 修改bind ip以便其它主机能访问
+---------------------------------------------------------
+4.安装nginx
+sudo apt-get install nginx
+配置/etc/nginx/nginx.conf，在http下添加：
+
+	#设置myapp的两个主机 
+	upstream myapp {  
+        server 192.168.1.21:8081;  
+        server 192.168.1.61:8081;  
+        keepalive 64;  
+    }  
+	server {
+    	listen       80;
+    	server_name  192.168.1.21;
+
+    	#charset koi8-r;
+
+    	#access_log  logs/host.access.log  main;
+    	
+    	location / {
+        	proxy_set_header X-Real-IP $remote_addr;
+       		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        	proxy_set_header Host  $http_host;
+        	proxy_set_header X-Nginx-Proxy true;
+        	
+        	#设置为访问myapp,支持websocket
+       		proxy_pass http://myapp;
+       		proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection "upgrade";
+
+
+
+       		proxy_redirect default;
+       		# root   html;
+       		#index  index.html index.htm;
+    	}
+
+    	#error_page  404              /404.html;
+
+    	# redirect server error pages to the static page /50x.html
+    	#
+    	error_page   500 502 503 504  /50x.html;
+    	location = /50x.html {
+        	root   html;
+    	}
+	}
+检查配置文件：sudo nginx -t
+访问日志：tailf /var/log/nginx/access.log
+
+---------------------------------------------------------
+
+
+
+
+文件结构：
+├── app.js  #应用入口程序（supervisor app.js）
+├── config.json  #配置文件
+├── package.json  
+├── node_modules
+├── view      #模板文件，从layout.tpl继承
+│   ├── layout.tpl
+│   ├── home.tpl    #tpl文件简单继承layout布局，以及页面打开时的初始化数据赋值
+│   ├── home.html   #显示样式的html代码定义，与tpl同名的html文件
+│   └── public        #静态文件，html，css，javascript
+│       ├── angular.js-1.4.6    
+│       ├── bootstrap-3.3.7-dist
+│       ├── jquery
+│       ├── jgestures
+│       ├── js        #与view下面html文件对应名称的js文件，  相关的angular，jquery代码，实现页面效果，请求webapi加载数据。  
+│       ├── css       #自定义的css文件，customization.css以及其它自定义css文件
+│       └── img       #页面请求的静态图片文件，例如logo
+└── webapp
+    ├── view_Service.js  #调度tpl模板的逻辑控制器
+    ├── resource_Service.js  #实体文件在文件系统上的存取
+ 	└── api        #提供返回json的web服务
+        ├── client.js #连接后台进程的连接池
+        └── user.js   #一组相关的api
+
+逻辑流程：
+app.js监听web请求 -> view_Service调用tpl模板 -> tpl模板嵌入html/js/css文件 -> 返回浏览器/客户端
+浏览器/客户端发送数据请求 -> app.js调用webapi -> webapi从client中取出backend连接，发送请求 -> 接收返回结果发送浏览器/客户端
+
+ * 接收webapi请求格式：
+ url为RestFul调用，参数json格式
+
+ * 发送backend请求json格式：
+ {
+	request:'userAction/getUser', //请求的action， 模块名称/函数名称， 模块名称为action目录下的py文件名称，函数名称为该py文件中的函数
+	param:{                       //函数的参数，非必需
+		query:{"login_name":"ss"},                  //数据库查询条件
+		projection:{"location":0},                  //返回的字段
+		sort:[("created_date",1),("location",-1)],  //结果排序
+													//自行设计其它任意参数
+	}
+ }
+
+ * 返回结果json格式：
+ json格式数据，[]或{}形式。
+ 
+----------------------------------------------------------

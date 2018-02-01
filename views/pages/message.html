@@ -1,0 +1,164 @@
+
+	<div class="container-fluid user-message-container ng-cloak" ng-cloak ng-controller="message" ng-init="initData()">
+		<div class="row-fluid clearfix" >
+			<div class="col-md-1 column" >
+			</div>
+			<div class="col-md-3 column hidden-xs hidden-md hidden-sm" >
+				<div class=" user-message-list"  >
+					<div id='message-item-1' class="row-fluid selected" ng-click="loadSettings(my_id,1)">
+						私信 <div style='display: inline-block; width:18px;height:18px;line-height:18px;border-radius:9px;font-size:14px;background:red;color:white;text-align: center; margin-left: 10px;' ng-if='chat_unread>0'>{{chat_unread}}</div>
+					</div>
+					<div id='message-item-2' class="row-fluid"  ng-click="loadSettings(my_id,2)">评论</div>
+					<div id='message-item-3' class="row-fluid"  ng-click="loadSettings(my_id,3)">收藏</div>
+					<div id='message-item-4' class="row-fluid"  ng-click="loadSettings(my_id,4)">通知</div>
+				</div>
+			</div>
+			<div class="col-md-6 column user-message-content" >
+				
+				<div id='message-content-1' class="chat selected" ng-init='chatting=false'>
+					<div class="row-fluid chatting" ng-if='chatting'>
+						<div class="row-fluid header" >
+							<span ng-click='chatlist(chatting_user.chat)' style='margin-left:20px;color: #bbb;cursor: pointer;'>
+								<span class="glyphicon glyphicon-arrow-left pull-left" style='top:3px;' ></span>
+								<span class="pull-left" style='margin-left: 5px;' >返回消息列表</span>
+							</span>
+							<span style='font-weight: bold;margin-left: -150px;'>与{{chatting_user.talk_user_name}}的对话</span>
+							<div style='border-bottom: 1px solid #eee; margin-top: 10px;'></div>
+						</div>
+
+						<div id='msg_list_view' class="row-fluid" ng-hide='nomore' style='visibility: hidden; width: 100%;text-align: center;margin-top: 10px;'>
+							<span style='color:rgb(235, 115, 80); font-size: 16px;cursor: pointer; ' ng-click='getMoreMessages(chatting_user.chat)'>查看更多消息</span>
+						</div>
+						
+						<div id='msg_list_view' style='visibility: hidden;margin-top:10px;'>
+							<div id='chat_msg'  class="row-fluid" ng-repeat='item in chatting_list.slice().reverse()'>
+
+								<div class='chat-user' ng-if='item.user===chatting_user.talk_user'>
+									<img class="img-circle"  ng-src='/resource/{{chatting_user.talk_user_img}}?frame=micro&sharp=square&scale=1' >
+								</div>
+								<div class='chat-user pull-right' ng-if='item.user===my_id'>
+									<img class="img-circle"  ng-src='/resource/{{my_img}}?frame=micro&sharp=square&scale=1' >
+								</div>
+
+								<div class='chat-content ' ng-class='item.user===my_id?"chat-content-right pull-right":"chat-content-left"'>
+									<div ng-class='item.user===my_id?"leftballoon-msg":"rightballoon-msg"'  > {{item.msg}}</div>
+									<div class='chat-date' ng-class='item.user===my_id?"pull-right":""'>{{item.created_date}}</div>	
+								</div>
+								
+							</div>
+						</div>
+
+						
+						
+						<div  style='margin-bottom:80px;'></div>
+						<form role="form" class='chat-window' >
+							<div class="form-group" style='margin-bottom: 8px;'>
+								<textarea class="form-control " style='height: 40px;' placeholder="" rows='1' ng-model='$parent.message' ng-keyup="handleKey($event)"  id="input_msg"> </textarea>
+								<script type="text/javascript">
+									var textarea = document.getElementById("input_msg");
+									// makeExpandingArea(textarea);
+									autoTextarea(textarea,0,350);
+								</script>
+							</div>
+							<div class='pull-left' style='color: #aaa;' >按Ctrl+Enter发送消息</div>
+							<div class='pull-right button' ng-click='sendMsg()'>发送</div>
+						</form>
+
+
+
+					</div>
+
+
+
+
+
+					<!--会话列表-->
+					<div class="row-fluid chat-list"  ng-if='!chatting' ng-click='chat(chat_item)' ng-repeat='chat_item in chat_list'>
+
+						<div style='width: 10%;'>
+							<img class="img-circle"  ng-src='/resource/{{chat_item.talk_user_img}}?frame=micro&sharp=square&scale=1'>
+						</div>
+					
+						<div style='width: 70%;'>
+							<span style='font-size: 16px;'>{{chat_item.talk_user_name}}</span>
+							<span class='pull-right'>{{chat_item.last_msg.created_date}}</span>
+						
+							<div >			
+								<div style='display: inline-block; color: #777; width:85%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; '>{{chat_item.last_msg.msg}}</div>
+								<span ng-if='chat_item.unread>0' class='pull-right' style='width:30px;height:16px;line-height:16px;border-radius:6px;font-size:14px;background:orange;color:white;text-align: center;'>{{chat_item.unread}}</span>
+							</div>
+						</div>
+					
+					</div>
+					
+				</div>
+
+				<div id='message-content-2' class="chat" >
+					<div class="row-fluid ">
+						<div style=';width: 10%;'>
+						<img class="img-circle"  ng-src='/resource/{{user.img}}?frame=micro&sharp=square&scale=1'>
+						</div>
+					
+						<div style='width: 70%;'>
+							<span style='font-size: 16px;'>{{user.name}}</span>
+							<span class='pull-right'>{{user.created_date}}</span>
+						
+							<div style='color: #777;'>评论了 <span style='color:#3194d0;'>{{user.self_introduction}}</span></div>
+						</div>
+					
+					</div>
+				</div>
+				<div id='message-content-3' class='chat'>
+					<div class="row-fluid ">
+						<div style=';width: 10%;'>
+						<img class="img-circle"  ng-src='/resource/{{user.img}}?frame=micro&sharp=square&scale=1'>
+						</div>
+					
+						<div style='width: 70%;'>
+							<span style='font-size: 16px;'>{{user.name}}</span>
+							<span class='pull-right'>{{user.created_date}}</span>
+						
+							<div style='color: #777;'>收藏了 <span style='color:#3194d0;'>{{user.self_introduction}}</span></div>
+						</div>
+					
+					</div>
+				</div>
+				<div id='message-content-4' class="chat">
+					<div class="row-fluid ">
+						<!-- <div style=';width: 10%;'>
+						<img class="img-circle" src='{{"/resource/"+user.img+"?frame=micro&sharp=square&scale=1"}}' onerror='this.src="/img/user_64px_1174206_easyicon.net.png"' ng-src='/resource/{{user.img}}?frame=micro&sharp=square&scale=1'>
+						</div> -->
+					
+						<div style='width: 100%;'>
+							<span style='font-size: 16px;'>系统消息</span>
+							<span class='pull-right'>{{user.created_date}}</span>
+						
+							<div style='color: #777;'>{{user.self_introduction}}</div>
+						</div>
+					
+					</div>
+				</div>
+
+			</div>
+			<div class="col-md-2 column" >
+			</div>
+		</div>
+
+	</div>
+
+
+
+
+	<br><br><br>
+
+
+
+
+
+
+
+
+
+
+
+        

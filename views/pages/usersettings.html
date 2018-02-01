@@ -1,0 +1,238 @@
+
+	<div class="container-fluid user-settings-container ng-cloak" ng-cloak ng-controller="usersettings" ng-init="initData()">
+		<div class="row-fluid clearfix" >
+			<div class="col-md-1 column" >
+			</div>
+			<div class="col-md-3 column " >
+				<div class=" user-settings-list"  >
+					<div id='settings-item-1' class="row-fluid selected" ng-click="loadSettings(my_id,1)">账号</div>
+					<div id='settings-item-2' class="row-fluid"  ng-click="loadSettings(my_id,2)">个人资料</div>
+					<div id='settings-item-3' class="row-fluid"  ng-click="loadSettings(my_id,3)">常规</div>
+					<div id='settings-item-4' class="row-fluid"  ng-click="loadSettings(my_id,4)">黑名单</div>
+				</div>
+			</div>
+			<div class="col-md-6 column user-settings-content" >
+				
+				<div id='settings-content-1' class="selected" >
+					<div class="row-fluid " style="margin-top: 0px;">
+						<div class="setting-label">
+							<img class="img-circle" ng-src='/resource/{{user.img}}?frame=middle&sharp=square&scale=1'>
+						</div>
+						<div class="setting-value"  >
+							
+								<div class='button' style="margin-top:30px; " >
+								
+									更改头像
+									<input id="user_img" type="file" style="opacity: 0;position: absolute;top: 0;margin-top:30px;width:90px;cursor: pointer;" onchange="angular.element(this).scope().upload(this.files);">
+									
+								</div>
+							
+						</div>
+						
+					</div>
+					<div class="row-fluid " >
+						<div class="setting-label">
+							<span>名称</span>
+						</div>
+						<div class="setting-value">
+							<input type='text' class="form-control" ng-model="user.name" ng-trim="true" placeholder="输入你的名称" ng-blur="check()" ng-focus='err_name=0'/>
+							<span style="color: red;" ng-if="err_name" >{{name_err}}<br/></span>
+						</div>
+					</div>
+					<div class="row-fluid " >
+						<div class="setting-label">
+							<span>登录名</span>
+						</div>
+						<div class="setting-value">
+							<input type='text' class="form-control"  ng-model="user.login_name" ng-trim="true" placeholder="输入你的登录名" ng-blur="check()" ng-focus='err_login_name=0'/>
+							<span style="color: red;" ng-if="err_login_name" >{{login_name_err}}<br/></span>
+						</div>
+					</div>
+					<div class="row-fluid " >
+						<div class="setting-label">
+							<span>邮箱</span>
+						</div>
+						<div class="setting-value">
+							<input type='text' class="form-control" ng-model="user.email" ng-trim="true" placeholder="输入你的邮箱地址" ng-blur="check()" ng-focus='err_email=0'/>
+							<span style="color: red;" ng-if="err_email">{{email_err}}<br/></span>
+						</div>
+					</div>
+					<div class="row-fluid " >
+						<div class="setting-label">
+							<span>手机</span>
+						</div>
+						<div class="setting-value">
+							<input type='text' class="form-control" ng-model="user.mobile" ng-trim="true" placeholder="输入你的手机号码" ng-blur="check()" ng-focus='err_mobile=0'/>
+							<span style="color: red;" ng-if="err_mobile">{{mobile_err}}<br/></span>
+						</div>
+					</div>
+					<div class="row-fluid " >
+						<div class="setting-label">
+							<span>密码</span>
+						</div>
+						<div class="setting-value">
+							<div class='button' data-toggle="modal" data-target="#changePass">更改密码</div>
+							<!-- 模态框（Modal） -->
+							<div class="modal fade" id="changePass" tabindex="-1" role="dialog" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+												&times;
+											</button>
+											<h4 class="modal-title" id="myModalLabel">
+												更改密码
+											</h4>
+										</div>
+										<div class="modal-body">
+											<form class="form-horizontal" role="form">
+												<div class="form-group">
+													<label for="firstname" class="col-sm-3 control-label">新密码</label>
+													<div class="col-sm-8">
+														<input type="password" class="form-control" ng-model='newpass' ng-focus='err_pass=0'>
+													</div>
+												</div>
+												<div class="form-group">
+													<label for="lastname" class="col-sm-3 control-label">确认新密码</label>
+													<div class="col-sm-8">
+														<input type="password" class="form-control" ng-model='renewpass' ng-focus='err_pass=0'>
+														<div ng-init='err_pass=0' ng-if='err_pass' style='color: red;'>{{pass_err}}</div>
+													</div>
+												</div>
+
+											</form>
+
+											
+
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-default" data-dismiss="modal">取消
+											</button>
+											<button type="button" class="btn btn-primary" ng-click='changePassword()'>
+												更改
+											</button>
+										</div>
+									</div><!-- /.modal-content -->
+								</div><!-- /.modal -->
+							</div>
+
+						</div>
+					</div>
+					<div class="row-fluid " style="border-bottom: 0px;" >
+						<div class="setting-label">
+							<div class='button save-button' ng-click='save()'>保存</div>
+						</div>
+						<div class="setting-value">
+							
+						</div>
+					</div>
+				</div>
+				<div id='settings-content-2'  >
+					<div class="row-fluid " style="margin-top: 0px;">
+						<div class="setting-label">
+							<span>性别</span>
+						</div>
+						<div class="setting-value">
+							<div class="radio">
+							  <label style="margin-left: 0px;">
+							    <input type="radio" id="sex" ng-value="1" ng-model='user.sex' ng-checked='user.sex===1 '>
+							    男
+							  </label>
+							  <label>
+							    <input type="radio" id="sex" ng-value="0" ng-model='user.sex' ng-checked='user.sex===0'>
+							    女
+							  </label>
+							  <label>
+							    <input type="radio" id="sex" ng-value="-1" ng-model='user.sex' ng-checked='user.sex!=1 && user.sex!=0'>
+							    保密
+							  </label>
+							</div>
+						</div>
+						
+					</div>
+					<div class="row-fluid " >
+						<div class="setting-label">
+							<span>身份</span>
+						</div>
+						<div class="setting-value">
+					    	<input type='text' class="form-control" ng-model="user.identity" placeholder="输入你的身份信息" />  
+						</div>
+					</div>
+					<div class="row-fluid " >
+						<div class="setting-label">
+							<span>个人简介</span>
+						</div>
+						<div class="setting-value">
+							<textarea class="form-control" rows="3" ng-model="user.self_introduction" placeholder="输入你的个人简介" ></textarea>
+							
+						</div>
+					</div>
+					<div class="row-fluid " >
+						<div class="setting-label">
+							<span>生日</span>
+						</div>
+						<div class="setting-value" >
+
+							<input type='text' readonly class="form-control date"  ng-model="user.birthday" id="datetimepicker" />
+						</div>
+					</div>
+					<div class="row-fluid " >
+						<div class="setting-label">
+							<span>位置</span>
+						</div>
+						<div class="setting-value">
+							<input type='text' class="form-control" ng-model="user.address" placeholder="输入你所在的位置或地址" />
+						</div>
+					</div>
+
+					<div class="row-fluid " style="border-bottom: 0px;" >
+						<div class="setting-label">
+							<div class='button save-button' ng-click='save()'>保存</div>
+						</div>
+						<div class="setting-value">
+							
+						</div>
+					</div>
+				</div>
+				<div id='settings-content-3' >
+					<div class="row-fluid " >
+						<input type="checkbox" ng-checked="user.show_message" ng-model="user.show_message" style='vertical-align:middle;'>
+						<span  style='font-size: 16px;vertical-align:middle;padding-top:4px;margin-left: 5px;'>当接收到消息时显示消息提示框</span>
+					</div>
+
+					<div class="row-fluid " style="border-bottom: 0px;" >
+						<div class="setting-label">
+							<div class='button save-button' ng-click='save()'>保存</div>
+						</div>
+						<div class="setting-value">
+							
+						</div>
+					</div>
+				</div>
+				<div id='settings-content-4' >
+				在你黑名单中的用户无法在你文章下评论，无法给你发送私信，自动从你的粉丝列表移除且无法再关注你。
+				</div>
+
+			</div>
+			<div class="col-md-2 column" >
+			</div>
+		</div>
+
+	</div>
+
+
+
+
+	<br><br><br>
+
+
+
+
+
+
+
+
+
+
+
+        

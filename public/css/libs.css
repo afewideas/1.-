@@ -1,0 +1,67 @@
+
+
+
+
+/*modified*/
+
+/********修改class**************************************/
+
+
+
+/********新建class**************************************/
+
+
+
+/*轮播样式*/
+
+/*左右按钮*/
+.slide-button {
+  float:left;
+  cursor: pointer;
+}
+.slide-button > span {
+  position:absolute;
+  top:50%; 
+  font-size:150%;
+  color:#aaa;
+}
+
+/*显示区*/
+.slide-block {
+  margin: 10px;
+  float:left;
+  cursor: pointer;
+}
+/*图片区域大小，包含下面文字*/
+.img-slide{
+  height:325px;
+  width:245px;
+}
+.img-slide > div > div {
+  height:40px;
+  margin:2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.img-slide > div > div > img {
+  margin: 5px;
+  height: 24px;
+  width:24px;
+}
+.img-icon {
+  margin:5px;
+  color:#484848;
+  margin-right: 1px;
+  vertical-align: middle;
+}
+.img-text {
+  color:#484848;
+  font-size: 12px;
+}
+
+.img-slide-xs {
+  height:420px;
+  width:340px;
+}
+
+

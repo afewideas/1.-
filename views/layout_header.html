@@ -1,0 +1,194 @@
+
+	<div class="container-fluid navbar-fixed-top layout-navbar" ng-cloak ng-controller="layout" ng-init="initData()" ng-hide="[[!show_header]]">
+		<!-- 导航及搜索 --> 
+		<div class="row-fluid bg-header" id="frame_header"  > 
+			<!-- 导航区 -->
+			<div class="row-fluid clearfix " >
+				<div class="col-md-12 column  margin-fix" >
+					<nav class="navbar navbar-default" role="navigation" >
+						<div class="navbar-header">
+							
+							<!-- 移动端在右上角变为下拉菜单 -->
+							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+							<!-- logo图片（用背景图方式对齐） -->
+							<a class="navbar-brand" href="#" style='background:url("/img/client_logo.png") no-repeat 50% 60%;width:120px;'></a>
+							<div class="nav navbar-nav" style="width: 50px;">&nbsp;</div>
+							<form class="navbar-form navbar-left" role="search">
+								<div class="form-group">
+									<input class="form-control" type="text" style="width: 300px;"/>
+								</div> <button type="submit" class="btn btn-default" >搜索</button>
+							</form>
+							
+						</div>
+
+						<!-- 右边导航菜单 -->
+						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" >
+
+							<ul class="nav navbar-nav navbar-right">
+								<li ng-if="logged_in">
+									<a href='/message/{{my_id}}' >
+										<span  >消息</span>
+										<div style="display: inline-block;margin-left: -4px;" ng-show="announcement>0">
+											<div style="width:18px;height:18px;line-height:18px;border-radius:9px;font-size:12px;background:red;color:white;text-align: center;position: absolute; top:10px;">
+												{{announcement}}
+											</div>
+										</div>
+									</a>
+									
+								</li>
+								<li class="hidden-xs hidden-sm">
+									<a href="#" data-toggle="dropdown">移动端</a>
+									<ul class="dropdown-menu " style="height:180px;width:140px;text-align: center;">
+										<li style="display: inline-block;"> 
+											<img  src="/img/mobile.png">
+										</li>
+										<li>手机扫一扫浏览</li>
+									</ul>
+								</li>
+								
+								<li ng-if="!logged_in">
+									<a  href="#modal-container-register" role="button" class="btn" data-toggle="modal">注册</a>
+								</li>
+								<li ng-if="!logged_in">
+									<a  href="#modal-container-login" role="button" class="btn" data-toggle="modal">登录</a>
+								</li>
+								<li ng-if="logged_in">
+								
+									<a href="" ng-click="gotoPage('/article/write')" style="padding-top:5px;padding-bottom:0px;">
+										<div style="text-align: center; padding-top:10px;padding-bottom:10px; width:30px;height: 30px; margin-top:5px; border-radius: 4px; color:white;background-color:#FF5A5F;">
+										<span class='glyphicon-pencil' style="top:-2px;position: relative;"></span>
+										</div>
+									</a>
+								</li>
+								<li ng-if="logged_in" >
+									
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown" style="display: inline-block;padding-top:6px;padding-bottom: 0px;height:50px;">
+										<img class="img-circle" style="height:36px;width: 36px;" src='{{"/resource/"+my_img+"?frame=micro&sharp=square&scale=1"}}' onerror='this.src="/img/user_64px_1174206_easyicon.net.png"' ng-src='/resource/{{my_img}}?frame=micro&sharp=square&scale=1'>
+										<span class="caret"></span>
+									</a>
+									<ul class="dropdown-menu">
+										<li> 
+											<a href="/user/{{my_id}}"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;<span>我的主页</span></a>
+										</li>
+										<li>
+											<a href=""><span class="glyphicon glyphicon-heart"></span>&nbsp;&nbsp;<span>收藏的文章</span></a>
+										</li>
+										<li>
+											<a href="/usersettings/{{my_id}}"><span class="glyphicon glyphicon-cog"></span>&nbsp;&nbsp;<span>设置</span></a>
+										</li>
+										<li>
+											<a href="" ng-click="logout()"><span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;<span>退出</span></a>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	
+	<!--注册-->
+	<div class="modal fade layout-modal" id="modal-container-register" role="dialog" aria-hidden="true" ng-controller="register">
+		<div class="modal-dialog" >
+			<div class="modal-content">
+				<div class="modal-header">
+					 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+					<h4 class="modal-title" id="myModalLabel" >
+						注册
+					</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal" ng-init="registered==false" ng-show="!registered">
+						<input type="text" class="form-control input-lg" ng-model="name" ng-focus="err_name=0" ng-blur="checkName()" placeholder="昵称">
+						<span style="color: red;" ng-if="err_name">该名称已被注册！<br/></span>
+				        <br/>
+						<input type="text" class="form-control input-lg" ng-model="email" ng-focus="err_email=0" ng-blur="checkEmail()" placeholder="邮箱">
+						<span style="color: red;" ng-if="err_email">该邮箱已被注册！<br/></span>
+				        <br/>
+				        <input type="password" class="form-control input-lg" ng-model="password" ng-focus="err_password=0" ng-blur="checkPassword()" placeholder="设置密码">
+				        <span style="color: red;" ng-if="err_password">密码长度必须大于6位！<br/></span>
+				        <br/>
+						<button type="submit" class="btn btn-lg btn-block layout-btn" ng-disabled="!(password!=null && name!=null && email!=null)" ng-click="register()">注 册</button>
+						
+					</form>
+					<form class="form-horizontal" ng-show="registered">
+						
+				        <span style="font-size: 20px;">恭喜，你已经注册成功！</span>
+				        <br/>
+						<button type="submit" data-dismiss="modal" class="btn btn-lg btn-block layout-btn" ng-click="login(email,password)">立即登录</button>
+						
+					</form>
+
+					<br><br>
+
+				</div>
+				<!-- <div class="modal-footer" style="text-align: center;">
+					 
+				</div> -->
+			</div>
+		</div>
+	</div>
+
+	<!--登录-->
+	<div class="modal fade layout-modal" id="modal-container-login" role="dialog" aria-hidden="true" ng-controller="layout" >
+		<div class="modal-dialog" >
+			<div class="modal-content" >
+				<div class="modal-header ">
+					 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+					<h4 class="modal-title" id="myModalLabel">
+						登录
+					</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal" ng-init="$err_login=false" >
+						<span style="color: red;" ng-show="err_login">{{login_err}}</span>
+						<input type="text" ng-focus="err_login=false" ng-model="email" class="form-control input-lg" placeholder="邮箱">
+				        <br>
+				        <input type="password" ng-focus="err_login=false" ng-model="password" class="form-control input-lg" placeholder="密码">
+				        <br>
+				        <div class="input-group" style="display: block; " >
+	        				<input type="checkbox" ng-model="rememberme" style="vertical-align:text-bottom;margin-bottom:1px;"> 
+	        				<span style="font-size: 18px;color:#666;">记住我</span>
+	        				<a style="font-size: 16px;color:#008489;float: right;">忘记密码？</a>
+        				</div>
+				        <br>
+        				
+						<button type="submit" ng-click="login(email,password)" class="btn btn-lg btn-block layout-btn">登 录</button>
+						
+					</form>
+
+					<br><br>
+
+				</div>
+				<!-- <div class="modal-footer" style="text-align: center;">
+					 
+				</div> -->
+			</div>
+		</div>
+	</div>
+
+<div style="position:fixed; width:350px;top:70px; right:30px;z-index: 9999;">
+	<div id="msg_alert" class="alert alert-info none" aria-hidden="true" style="display:none;">
+		<a href="" class="close" onclick='closeMsgAlert($(this).parent())' >&times;</a>
+		<div id="msg_alert_content"  style="width: 100%;">
+		
+		</div>
+	</div>
+	<div id="msg_alert" class="alert alert-info none" aria-hidden="true" style="display:none;">
+		<a href="" class="close" onclick='closeMsgAlert($(this).parent())' >&times;</a>
+		<div id="msg_alert_content" style="width: 100%;">
+		
+		</div>
+	</div>
+	<div id="msg_alert" class="alert alert-info none" aria-hidden="true" style="display:none;">
+		<a href="" class="close" onclick='closeMsgAlert($(this).parent())' >&times;</a>
+		<div id="msg_alert_content" style="width: 100%;">
+		
+		</div>
+	</div>
+</div>

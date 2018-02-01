@@ -1,0 +1,209 @@
+
+.user-message-container {
+	margin-top:100px;
+
+}
+
+.user-message-list {
+	margin-left:  50px;
+	position: fixed;
+	width: 250px;
+}
+
+.user-message-list > div {
+	border-radius: 4px;
+	height:50px;
+	line-height:50px;
+	padding-left: 20px; 
+	font-size: 16px; 
+}
+
+.user-message-list > div:hover {
+	background-color: #eee;
+	cursor: pointer;
+}
+
+.user-message-list > div.selected {
+	background-color: #eee;
+	cursor: default;
+}
+
+.user-message-content {
+	
+}
+
+.user-message-content > div {
+	padding-left: 10px;
+	/*visibility: hidden;*/
+	display: none;
+	position: absolute;
+}
+
+.user-message-content > div.selected {
+	/*visibility: visible;*/
+	display: block;
+	position: relative;
+}
+
+.user-message-content > .chat > div > div {
+	display: inline-block;
+	vertical-align: middle;	
+}
+
+.user-message-content > .chat > div > div > img {
+	height:50px;
+	width:50px;
+}
+
+.user-message-content > .chat > .chatting {
+	margin-top: 20px;
+}
+
+.user-message-content > .chat > .chatting > .chat-window {
+	position: fixed;
+	bottom:0px; 
+	padding: 10px;  
+	width: 650px;
+	background-color: rgba(255,255,255,1);
+}
+
+.user-message-content > .chat > .chatting > .chat-window > .button {
+	width: 80px;
+	height: 30px;
+	line-height: 30px;
+	font-size: 14px;
+	border: 1px solid #02ba02b3;
+	background-color: #02ba02b3;
+	border-radius: 15px;
+	text-align: center;
+	color: white;
+	cursor: pointer;
+}
+
+.user-message-content > .chat > .chatting > div {
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+.user-message-content > .chat > .chatting > div.header {
+	/*border-bottom: 1px solid #eee; */
+	width: 100%;
+	text-align: center;
+	margin-bottom: 10px;
+	padding-bottom: 10px;
+	padding-top: 40px;
+	position: fixed;
+	width: 650px;
+	top:40px;
+	background-color: rgba(255,255,255,1);
+	z-index: 9;
+}
+
+.user-message-content > .chat > .chatting > div > div {
+	width: 100%;
+	display: inline-block;
+}
+
+.user-message-content > .chat > .chatting > div > div > .chat-user,
+.user-message-content > .chat > .chatting > div > div > .chat-content  {
+	display: inline-block;
+	vertical-align: top;
+}
+
+.user-message-content > .chat > .chatting > div > div > .chat-content-left {
+	margin-left: 15px;
+} 
+
+.user-message-content > .chat > .chatting > div > div > .chat-content-right {
+	margin-right: 19px;
+} 
+
+.user-message-content > .chat > .chatting > div > div > .chat-content > .chat-date {
+	color: #ccc;
+}
+
+.user-message-content > .chat > .chatting > div > div > .chat-content > div > img {
+	max-width: 350px;
+}
+
+.user-message-content > .chat > .chatting > div > div > div > img {
+	height:50px;
+	width:50px;
+}
+
+.user-message-content > .chat > .chat-list {
+	border-bottom: 1px solid #eee;
+	padding-bottom: 20px;
+	padding-top: 10px;
+	cursor: pointer;
+	margin-bottom: 20px;
+}
+
+/*箭头左拉框*/
+.leftballoon-msg {
+	padding: 10px;
+    border: 1px solid #02ba02b3;
+    border-radius: 4px;
+    position: relative;
+    margin-top:3px;
+    max-width:480px;
+    vertical-align: middle;
+    word-break:break-all;
+    background-color: rgba(159, 255, 159, 1);
+
+}
+.leftballoon-msg:before,
+.leftballoon-msg:after{
+	content: "";
+    display: block;
+    position: absolute;
+    border: 7px solid transparent;
+    top:12px;
+}
+
+.leftballoon-msg:before{
+    border-left-color: #02ba02b3;
+    right:-15px;
+}
+.leftballoon-msg:after{
+    border-left-color: rgba(159, 255, 159, 1);
+    right:-14px;
+
+
+}
+/*end 箭头左拉框*/
+
+/*箭头右拉框*/
+.rightballoon-msg {
+	padding: 10px;
+    border: 1px solid #bad0e9;
+    border-radius: 4px;
+    position: relative;
+    margin-top:3px;
+    max-width:480px;
+    vertical-align: middle;
+    word-break:break-all;
+    background-color: #e7f1fc;
+}
+.rightballoon-msg:before,
+.rightballoon-msg:after{
+    content: "";
+    display: block;
+    position: absolute;
+    border: 7px solid transparent;
+    top:12px;
+
+}
+
+.rightballoon-msg:before{
+    border-right-color: #bad0e9;
+    left:-15px;
+}
+.rightballoon-msg:after{
+    border-right-color: #e7f1fc;
+    left: -14px;
+}
+/*end 箭头右拉框*/
+
+
+

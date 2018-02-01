@@ -1,0 +1,107 @@
+
+.user-settings-container {
+	margin-top:100px;
+
+}
+
+.user-settings-list {
+	margin-left:  50px;
+}
+
+.user-settings-list > div {
+	border-radius: 4px;
+	height:50px;
+	line-height:50px;
+	padding-left: 20px; 
+	font-size: 16px; 
+}
+
+.user-settings-list > div:hover {
+	background-color: #eee;
+	cursor: pointer;
+}
+
+.user-settings-list > div.selected {
+	background-color: #eee;
+	cursor: default;
+}
+
+.user-settings-content {
+	
+}
+
+.user-settings-content > div {
+	padding-left: 30px;
+	/*visibility: hidden;*/
+	display: none;
+	position: absolute;
+}
+
+.user-settings-content > div.selected {
+	/*visibility: visible;*/
+	display: block;
+	position: relative;
+}
+
+.user-settings-content > div > div {
+	margin-top: 20px;
+	padding-bottom: 20px;
+	border-bottom: 1px solid #eee;
+}
+
+.user-settings-content > div > div > div.setting-label {
+	display: inline-block;
+	width: 25%;
+	font-size: 16px;
+	color: #999;
+	vertical-align: top;
+	margin-top: 5px;
+}
+
+.user-settings-content > div > div > div.setting-label > img {
+	height:100px;
+	width:100px;
+}
+
+.user-settings-content > div > div > div.setting-label > span {
+	margin-left: 25px;
+}
+
+
+
+.user-settings-content > div > div > div.setting-value {
+	display: inline-block;
+	width: 74%;	
+}
+
+.user-settings-content > div > div > div.setting-value > .date {
+	width: 200px;
+	cursor: default;
+	display: inline-block;
+}
+
+.user-settings-content > div > div > div.setting-value > div > label {
+	margin-left: 20px;
+}
+
+.user-settings-content > div > div > div.setting-value > div > label > input {
+	top: -3px;
+}
+
+.user-settings-content > div > div > div > .button {
+	height: 30px;
+	line-height: 30px;
+	width: 90px;
+	text-align: center;
+	border:1px solid #42c02e;
+	color: #42c02e;
+	border-radius: 30px;
+	cursor: pointer;
+}
+
+.user-settings-content > div > div > div > .save-button {
+	background-color: #42c02e;
+	color: white;
+	height:34px;
+	line-height: 34px;
+}

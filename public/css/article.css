@@ -1,0 +1,299 @@
+
+.article-container {
+	margin-top: 100px;
+}
+
+.article-title {
+	margin-bottom: 30px;
+}
+
+.article-author {
+	margin-top: 30px;
+}
+
+.article-author > div {
+	float: left;
+}
+
+.article-author > div > img {
+	height: 48px;
+	width:48px;
+	cursor: pointer;
+}
+
+.article-author > .article-props {
+	margin-left: 20px;
+	font-size: 14px;
+}
+
+.article-author > .article-props > div > .author {
+	font-size: 16px;
+	cursor: pointer;
+}
+
+.article-author > .article-props > div > .follow-up-ed,
+.article-author > .article-props > div > .follow-up {
+	margin-left:10px;
+	height:22px;
+	line-height:22px;
+	width: 70px;
+	display:inline-block;
+	text-align: center;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+.article-author > .article-props > div > .follow-up {
+	background-color: #42c02e;
+	color: white;
+}
+
+.article-author > .article-props > div > .follow-up > img {
+	height:14px;
+	width:14px;
+	margin-top:-1px;
+}
+
+.article-author > .article-props > div > .follow-up-ed {
+	border: 1px solid #42c02e;
+	color: #42c02e;
+}
+
+.article-author > .article-props > .article-info {
+	margin-top:8px; 
+	opacity: 0.7;
+}
+
+.article-operate {
+	font-size: 19px;
+}
+
+.article-operate > div {
+	height:50px;
+	line-height: 50px; 
+	width:150px;
+	border:1px solid #bbb;
+	color: #999;
+	margin-right:20px;
+	text-align: center;
+	vertical-align: middle; 
+	display: inline-block; 
+	border-radius: 50px; 
+	cursor: pointer;
+}
+
+.article-comment {
+	margin-top: 80px;
+}
+
+.article-comment > .comment-login {
+	font-size: 16px;
+	background-color: #EEE; 
+	border:1px solid #DDD;
+	height: 135px;
+	line-height: 135px;
+	text-align: center; 
+	vertical-align: middle;  
+}
+
+.article-comment > .comment-login > .login-btn {
+	height:35px;
+	line-height: 35px; 
+	width:100px;
+	text-align: center;
+	vertical-align: middle; 
+	display: inline-block; 
+	color: white; 
+	background-color: #FF5A5F; 
+	border:0px solid #bbb; 
+	border-radius: 50px;
+	margin-right: 10px;
+	cursor: pointer;
+}
+
+.comment-reply,
+.article-comment > .comment-post {
+	font-size: 16px;
+	display: inline-block;
+	width:100%;
+	/*border:1px solid red;*/
+}
+
+.comment-reply {
+	width:95%;
+}
+
+.comment-reply > form > div > textarea,
+.article-comment > .comment-post > form > div > textarea {
+	background-color: #f7f7f7; 
+	border:1px solid #DDD;
+	outline:none;
+	resize:none;
+	
+}
+
+.comment-reply > .reply-btn,
+.article-comment > .comment-post > .post-btn {
+	height:30px;
+	line-height: 30px; 
+	width:80px;
+	text-align: center;
+	vertical-align: middle; 
+	display: inline-block; 
+	color: white; 
+	background-color: #FF5A5F; 
+	border:0px solid #bbb; 
+	border-radius: 50px;
+	margin-right: 10px;
+	cursor: pointer;
+}
+
+.comment-reply > .disabled-reply-btn,
+.article-comment > .comment-post > .disabled-post-btn {
+	opacity: 0.6;
+	cursor: default;
+}
+
+.article-comment-count {
+	font-size: 16px;
+	margin-top: 30px;
+	height:50px; 
+	border-bottom: 1px solid #ccc;
+}
+
+.article-comment-count > span {
+	font-size: 18px; 
+	font-weight: bold;
+}
+
+.article-comment-detail {
+	margin-top: 30px;
+}
+
+.article-comment-detail > .user-info {
+	display: inline-block;
+}
+
+.article-comment-detail > .user-info > div {
+	float: left;
+}
+
+.article-comment-detail > .user-info > div > img {
+	margin-top: 1px;
+	height: 36px;
+	width:36px;
+	cursor: pointer;
+}
+
+.article-comment-detail > .user-info > .comment-props {
+	margin-left: 10px;
+}
+.article-comment-detail > .user-info > .comment-props > span {
+	font-size: 16px;
+	cursor: pointer;
+}
+
+.article-comment-detail > .user-info > .comment-props > div {
+	/*margin-top:1px;*/
+	font-size: 12px; 
+	opacity: 0.7;
+}
+
+.article-comment-detail > .comment-content {
+	margin-top: 20px;
+}
+
+.article-comment-detail > .comment-content-response {
+	margin-top: 20px;
+	border:0px solid gray;
+	height:22px;
+	line-height:22px;
+	vertical-align: middle;
+	display: inline-block;
+	opacity: 0.6;
+}
+
+.article-comment-detail > .comment-content-response > span {
+	cursor: pointer;
+}
+
+.article-comment-detail > .comment-content-response > .selected {
+	color: #FF5A5F;
+}
+
+
+.article-comment-detail > .comment-content-response-content {
+	margin-top: 20px; 
+	border-left: 2px solid #ccc; 
+}
+
+.article-comment-detail > .comment-content-response-content > div {
+	margin-left: 20px;
+	margin-top:10px;
+	/*border-bottom: 1px solid #EEE;*/
+}
+
+.article-comment-detail > .comment-content-response-content > div > div > .res-post {
+	color:#3194d0;
+	cursor: pointer;
+}
+
+.article-comment-detail > .comment-content-response-content > div > .res-props {
+	margin-top:5px;
+	font-size: 14px; 
+	opacity: 0.7;
+	margin-bottom: 10px;
+}
+
+/*.article-comment-detail > .comment-content-response-content > div > .res-props > .res-props-reply {
+	cursor: pointer;
+}*/
+
+.article-comment-detail > .comment-content-response-content > .res-more {
+	border-bottom: 0px solid #EEE;
+	margin-left: 20px;
+	margin-top:15px;
+	font-size: 14px; 
+	opacity: 0.7;
+	margin-bottom: 10px;
+}
+
+.article-comment-detail > .comment-content-response-content > .res-more > span,
+.article-comment-detail > .comment-content-response-content > .res-more > a {
+	cursor: pointer;
+}
+
+
+/*箭头左拉框*/
+.leftballoon {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    position: absolute;
+    margin:0px;
+    height:200px;
+    line-height:200px;
+    width:200px;
+    text-align: center;
+    background-color: white;
+    z-index: 8;
+}
+.leftballoon:before,
+.leftballoon:after{
+    content: "";
+    display: block;
+    position: absolute;
+    border: 10px solid transparent;
+    top:110px;
+
+}
+
+.leftballoon:before{
+    border-left-color: white;
+    left:198px;
+    z-index: 8;
+}
+.leftballoon:after{
+    border-left-color: #ccc;
+    left: 199px;  
+}
+/*end 箭头左拉框*/

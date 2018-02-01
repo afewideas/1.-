@@ -1,0 +1,134 @@
+
+	<div class="container-fluid ng-cloak" ng-cloak style="margin-top: 100px;" ng-controller="explore">
+		
+
+		<!-- 配方推荐区 -->
+		<div class="row-fluid clearfix"> 
+			<div class="col-md-1 column" >
+			</div>
+			<div class="col-md-10 column" >
+				<!-- 内容标题 -->
+				<div class="margin-fix-2"  >
+					<h3>配方推荐</h3>
+				</div>
+				<div class="margin-fix-2"> 							<!-- slide-column-container定位布局层级 -->
+					<div>                  							<!-- slide-column-container定位布局层级 -->
+						<div class="row slide-column-container" >   <!-- slide-column-container定位布局层级 -->
+							<!-- 循环slide -->
+							<div class="col-md-4 slide-block"  ng-click="gotoPage(recipe.url)" ng-repeat="recipe in recipe_recommend" >
+								<img style="float: left;" src='{{ recipe.icon }}'>
+								<div style="float: left;">
+									<div>
+										<div  style="font-size: 18px;">
+											{{ recipe.title }}
+										</div>
+										<div style="color:#0D92BD;font-size: 14px;">
+											{{ recipe.type }}
+										</div>
+										
+										<table style="font-size: 12px;">
+											<tr>
+												<td>批次量：</td><td>{{ recipe.batch }}<span style="font-size: 10px;opacity:0.6;">&nbsp;L</span></td>
+												<td style="width:10px;"></td>
+												<td>酒精度：</td><td>{{ recipe.abv }}<span style="font-size: 10px;opacity:0.6;">&nbsp;%</span></td>
+											</tr>
+											<tr>
+												<td>初始糖度：</td><td>{{ recipe.og }}<span style="font-size: 10px;opacity:0.6;">&nbsp;°P</span></td>
+												<td style="width:10px;"></td>
+												<td>终点糖度：</td><td>{{ recipe.fg }}<span style="font-size: 10px;opacity:0.6;">&nbsp;°P</span></td>
+											</tr>
+											<tr>
+												<td>苦度：</td><td>{{ recipe.ibu }}<span style="font-size: 10px;opacity:0.6;">&nbsp;IBUs</span></td>
+												<td style="width:10px;"></td>
+												<td>颜色：</td><td>{{ recipe.color }}<span style="font-size: 10px; opacity:0.6;">&nbsp;SRM</span></td>
+											</tr>
+										</table>
+									</div>
+								</div>
+								
+							</div>
+							
+							<!-- end 循环slide -->
+
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-1 column" >
+			</div>
+		</div>
+		<!-- end 配方推荐区 -->
+		
+		<br><br><br>
+
+		<!-- 热门文章区 -->
+		<div class="row-fluid clearfix">
+
+			<div class="col-md-1 column" >
+			</div>
+
+			<div class="col-md-10 column" >
+				<!-- 内容标题 -->
+				<div class="margin-fix-2"  >
+					<h3>热门文章</h3>
+				</div>
+
+				<!-- 单行横向滑动 -->
+				<div class="slide-row-container margin-fix-2">
+					<div class="slide-row-button slide-row-button-left 
+								" onclick="slide_row_scrollToLeft(this)" >
+						<span class="glyphicon glyphicon-menu-left "></span>
+					</div>
+					<div id="slide-row-swiper" class="slide-row-swiper" slide-scroll=0 button_fixed=false>
+						<div id="slide-block" class="slide-block" ng-click='gotoPage("/article/"+article.id)' ng-repeat="article in article_hot" >
+
+							<div class="slide-label" >
+								<span class="label" ></span>
+								<div>
+									<span class="label" >{{ article.type }}</span>
+								</div>
+							</div>
+
+							<img onload="fix_label(this)" src='{{ article.picture + "?frame=middle&sharp=landscape&scale=0" }} '>
+
+							<div class="slide-desc">{{article.title}}</div>
+							
+							<div class="slide-props">
+
+								<img class="img-circle img-owner" src='{{article.author_img + "?frame=micro&sharp=square&scale=0" }}' alt='{{article.author}}' title='{{article.author}}'>
+
+								<span class="glyphicon glyphicon-thumbs-up img-icon"></span>
+								<span class="img-text">{{article.thumbs_up}}</span>
+
+								<span class="glyphicon glyphicon-comment img-icon"></span>
+								<span class="img-text">{{article.comment}}</span>
+
+							</div>
+						</div>
+
+						
+					</div>
+					<div class="slide-row-button slide-row-button-right 
+								" size="{{ article_hot.length}}" onclick="slide_row_scrollToRight(this)" >
+						<span class="glyphicon glyphicon-menu-right " ></span>
+					</div>
+				</div>
+				<!-- end 单行横向滑动 -->
+
+
+			</div>
+
+			<div class="col-md-1 column">
+			</div>
+
+		</div>
+
+		<br><br><br>
+
+		
+
+		
+
+		<br><br><br>
+
+	</div>

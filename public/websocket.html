@@ -1,0 +1,38 @@
+<html>
+
+<head>
+    <title>socket</title>
+</head>
+
+<body>
+<div id="msg_area">
+    
+</div>
+<button id="sendBtn">发送消息</button>
+
+<button id="leaveBtn">离开</button>
+
+</body>
+<!--引入必要的js文件-->
+<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+<script type="text/javascript">
+        //新建socket
+        var socket = null;//io('192.168.1.21:8081');
+        socketdata(socket);
+
+        function socketdata() {
+            if(socket!=null){
+            //定义接收到coins类型数据时的行为
+            socket.on('coins', function(msg){
+                console.log(msg+socket.id);
+            })
+            //定义接收到trends类型数据时的行为
+            socket.on('trends', function(msg){
+                console.log(msg);
+            })
+}
+
+        }
+</script>
+
+</html>
